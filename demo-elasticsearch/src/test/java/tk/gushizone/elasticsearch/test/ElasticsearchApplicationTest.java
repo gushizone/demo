@@ -34,7 +34,7 @@ import java.util.Optional;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class ElasticsearchTest {
+public class ElasticsearchApplicationTest {
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
@@ -47,11 +47,11 @@ public class ElasticsearchTest {
      */
     @Test
     public void testIndex() {
+        // 删除映射
+        elasticsearchTemplate.deleteIndex("item");
+
         elasticsearchTemplate.createIndex(Item.class);
         elasticsearchTemplate.putMapping(Item.class);
-
-        // 删除映射
-//        elasticsearchTemplate.deleteIndex("item");
     }
 
     /**

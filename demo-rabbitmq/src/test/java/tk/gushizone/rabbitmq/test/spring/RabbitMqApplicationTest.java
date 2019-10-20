@@ -1,4 +1,4 @@
-package tk.gushizone.rabbitmq.spring;
+package tk.gushizone.rabbitmq.test.spring;
 
 import com.rabbitmq.client.Connection;
 import org.junit.Test;
@@ -7,6 +7,7 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tk.gushizone.rabbitmq.spring.RabbitMqApplication;
 import tk.gushizone.rabbitmq.util.ConnectionUtil;
 
 
