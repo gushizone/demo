@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * TODO  一般只要指定String是 text or keyword ，其他会自动识别。
  *
  * @author gushizone@gmail.com
- * @createTime 2019-09-14 14:36
+ * @date 2019-09-14 14:36
  */
 @Getter
 @Setter

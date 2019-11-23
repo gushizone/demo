@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author gushizone@gmail.com
- * @createTime 2019-09-14 14:34
+ * @date 2019-09-14 14:34
  */
 @SpringBootApplication
 public class ElasticsearchApplication {

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author gushizone@gmail.com
- * @createTime 2019-10-20 20:47
+ * @date 2019-10-20 20:47
  */
 @SpringBootApplication
 public class MongodbApplication {

@@ -6,7 +6,7 @@ import tk.gushizone.mongodb.pojo.Comment;
 
 /**
  * @author gushizone@gmail.com
- * @createTime 2019-10-20 20:57
+ * @date 2019-10-20 20:57
  */
 @Repository
 public interface CommentRepository extends MongoRepository<Comment, String> {
