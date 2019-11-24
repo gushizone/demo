@@ -4,6 +4,7 @@
 
 - java
     - lombok
+    - jdk8新特性
 - rabbitmq
 - elasticsearch
 - mongodb
