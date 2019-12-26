@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tk.gushizone.mybatis.dao.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="tk.gushizone.mybatis.pojo.Message">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="COMMAND" property="command" typeHandler="tk.gushizone.mybatis.enumeration.CodeEnumTypeHandler"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
+        <result column="IS_DELETED" property="isDeleted" jdbcType="BIT"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID, COMMAND, `DESCRIPTION`, CONTENT, IS_DELETED, CREATE_TIME, unix_timestamp(UPDATE_TIME) as UPDATE_TIME
+    </sql>
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into message (COMMAND,
+                             `DESCRIPTION`,
+                             CONTENT,
+                             IS_DELETED,
+                             CREATE_TIME,
+                             UPDATE_TIME)
+        values (#{command.code,jdbcType=TINYINT},
+                #{description,jdbcType=VARCHAR},
+                #{content,jdbcType=VARCHAR},
+                #{isDeleted,jdbcType=BIT},
+                #{createTime,jdbcType=TIMESTAMP},
+                from_unixtime(#{updateTime}))
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from message
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="tk.gushizone.mybatis.pojo.Message">
+        update message
+        <set>
+            <if test="command != null">
+                COMMAND = #{command.code},
+            </if>
+            <if test="description != null">
+                `DESCRIPTION` = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="isDeleted != null">
+                IS_DELETED = #{isDeleted,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = from_unixtime(#{updateTime}),
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>

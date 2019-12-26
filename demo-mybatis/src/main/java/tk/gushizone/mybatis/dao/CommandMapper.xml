@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tk.gushizone.mybatis.dao.CommandMapper" >
+
+  <resultMap id="CommandResultMap" type="tk.gushizone.mybatis.pojo.Command" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <collection property="commandContents" resultMap="CommandContentResultMap" />
+  </resultMap>
+
+  <resultMap id="CommandContentResultMap" type="tk.gushizone.mybatis.pojo.CommandContent" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="COMMAND_ID" property="commandId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    a.ID, a.NAME, a.DESCRIPTION, a.CREATE_TIME, a.UPDATE_TIME,
+    b.ID, b.CONTENT, b.COMMAND_ID, b.CREATE_TIME, b.UPDATE_TIME
+  </sql>
+
+  <select id="selectCommandWithContent" resultMap="CommandResultMap">
+    select
+        <include refid="Base_Column_List" />
+    FROM COMMAND a LEFT JOIN COMMAND_CONTENT b
+    ON a.ID= b.COMMAND_ID
+  </select>
+
+
+</mapper>
