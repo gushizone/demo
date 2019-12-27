@@ -92,7 +92,7 @@ public class ElasticsearchApplicationTest {
     public void testFind() {
 
         Optional<Item> item = itemRepository.findById(1L);
-        System.out.println(item.get());
+        System.out.println(item);
 
         Iterable<Item> list = itemRepository.findAll(Sort.by("price").descending());
         list.forEach(System.out::println);

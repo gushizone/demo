@@ -82,7 +82,7 @@ public class MongodbDriverTest {
         Map<String, Object> map = new HashMap<>();
         map.put("_id", "1");
         map.put("name", "测试数据");
-        map.put("version", 1);
+        map.put("version", 1d);
         Document document = new Document(map);
         // 添加数据
         testc.insertOne(document);

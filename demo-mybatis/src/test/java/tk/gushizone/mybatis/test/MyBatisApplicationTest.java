@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MyBatisApplication.class)
-public class MybatisTest {
+public class MyBatisApplicationTest {
 
     @Resource
     private MessageMapper messageMapper;
@@ -31,7 +31,7 @@ public class MybatisTest {
     private CommandMapper commandMapper;
 
     @Test
-    public void createTest() {
+    public void testCreate() {
         Message newMessage = Message.builder()
                 .command(CommandEnum.JOKE)
                 .description("段子描述新增")
@@ -46,13 +46,13 @@ public class MybatisTest {
     }
 
     @Test
-    public void retrieveTest() {
+    public void testRetrieve() {
         Message message = messageMapper.selectByPrimaryKey(1);
         log.warn(message.toString());
     }
 
     @Test
-    public void updateTest() {
+    public void testUpdate() {
 
         Message newMessage = Message.builder()
                 .id(1)
@@ -69,7 +69,7 @@ public class MybatisTest {
     }
 
     @Test
-    public void deleteTest() {
+    public void testDelete() {
         int row = messageMapper.deleteByPrimaryKey(0);
         log.warn("操作记录数：{}。", row);
     }
@@ -78,7 +78,7 @@ public class MybatisTest {
      * 一对多
      */
     @Test
-    public void collectionTest() {
+    public void testCollection() {
 
         List<Command> commands = commandMapper.selectCommandWithContent();
         log.warn(commands.toString());
