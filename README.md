@@ -8,6 +8,7 @@
 - rabbitmq
 - elasticsearch
 - mongodb
+- mybatis
 
 
 
