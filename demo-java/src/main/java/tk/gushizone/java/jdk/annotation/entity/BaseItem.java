@@ -1,6 +1,6 @@
-package tk.gushizone.java.basic.annotation.entity;
+package tk.gushizone.java.jdk.annotation.entity;
 
-import tk.gushizone.java.basic.annotation.Description;
+import tk.gushizone.java.jdk.annotation.Description;
 
 /**
  * @author gushizone@gmail.com

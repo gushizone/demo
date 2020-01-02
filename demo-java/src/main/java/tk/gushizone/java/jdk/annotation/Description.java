@@ -1,4 +1,4 @@
-package tk.gushizone.java.basic.annotation;
+package tk.gushizone.java.jdk.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

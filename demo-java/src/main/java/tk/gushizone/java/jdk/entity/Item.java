@@ -1,4 +1,4 @@
-package tk.gushizone.java.basic.entity;
+package tk.gushizone.java.jdk.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package tk.gushizone.java.basic.annotation.orm;
+package tk.gushizone.java.jdk.annotation.orm;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;

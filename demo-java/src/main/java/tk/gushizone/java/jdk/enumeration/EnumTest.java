@@ -1,4 +1,4 @@
-package tk.gushizone.java.basic.enumeration;
+package tk.gushizone.java.jdk.enumeration;
 
 import org.junit.Test;
 

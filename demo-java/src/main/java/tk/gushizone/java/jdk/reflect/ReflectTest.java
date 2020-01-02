@@ -1,7 +1,7 @@
-package tk.gushizone.java.basic.reflect;
+package tk.gushizone.java.jdk.reflect;
 
 import org.junit.Test;
-import tk.gushizone.java.basic.entity.Item;
+import tk.gushizone.java.jdk.entity.Item;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -64,7 +64,7 @@ public class ReflectTest {
         Class c2 = foo1.getClass();
 
         // 3. 通过类的全称获取 (throws ClassNotFoundException)
-        Class c3 = Class.forName("tk.gushizone.java.basic.reflect.Foo");
+        Class c3 = Class.forName("tk.gushizone.java.jdk.reflect.Foo");
 
         // 这个实例对象(c1,c2)称之为这个类（Foo）的类类型(class type)
         // 任何类的类类型只有一个

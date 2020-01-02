@@ -1,8 +1,8 @@
-package tk.gushizone.java.basic.annotation.entity;
+package tk.gushizone.java.jdk.annotation.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import tk.gushizone.java.basic.annotation.Description;
+import tk.gushizone.java.jdk.annotation.Description;
 
 /**
  *
