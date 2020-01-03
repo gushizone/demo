@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 无操作监听器 (高版本不需要) -->
+    <!--<statusListener class="ch.qos.logback.core.status.NopStatusListener" />-->
+
+    <!-- appender: 控制台输出 -->
+    <appender name="print" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 对日志进行格式化 -->
+        <encoder>
+            <pattern>%m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="tk.gushizone" additivity="false" level="INFO" >
+        <appender-ref ref="print"/>
+    </logger>
+
+    <!-- 根logger: 所有logger的上级，默认为DEBUG -->
+    <root level="WARN">
+        <appender-ref ref="print"/>
+    </root>
+
+</configuration>
