@@ -1,4 +1,4 @@
-package tk.gushizone.java.basic.reflect;
+package tk.gushizone.java.jdk.reflect;
 
 import org.junit.Test;
 

@@ -1,9 +1,9 @@
-package tk.gushizone.java.basic.annotation;
+package tk.gushizone.java.jdk.annotation;
 
 import org.junit.Test;
-import tk.gushizone.java.basic.annotation.entity.Item;
-import tk.gushizone.java.basic.annotation.entity.Filter;
-import tk.gushizone.java.basic.annotation.orm.ORM;
+import tk.gushizone.java.jdk.annotation.entity.Item;
+import tk.gushizone.java.jdk.annotation.entity.Filter;
+import tk.gushizone.java.jdk.annotation.orm.ORM;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
