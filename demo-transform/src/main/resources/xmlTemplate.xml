@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction>
+    <object id="1">
+        <name>Foo</name>
+        <price>1999</price>
+    </object>
+</transaction>
