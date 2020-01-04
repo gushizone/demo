@@ -1,13 +1,13 @@
-package tk.gushizone.java.lombok.getter;
+package tk.gushizone.java.lombok.builder;
 
-import lombok.Getter;
+import lombok.Builder;
 
 /**
  * @author gushizone@gmail.com
  * @date 2019-11-09 23:55
  */
-@Getter
-public class Item {
+@Builder
+public class SimpleItem {
 
     private Integer id;
 
