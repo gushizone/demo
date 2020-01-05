@@ -1,0 +1,1005 @@
+{
+	"info": {
+		"_postman_id": "e19a87f9-df39-4d19-9808-c4c6f6b502c3",
+		"name": "demo-springmvc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "binding",
+			"item": [
+				{
+					"name": "/mvc/bind/primitive",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/bind/primitive?id=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"bind",
+								"primitive"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/primitive",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/bind/primitive?id=1",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"bind",
+										"primitive"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:42:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "id: 1"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/boxed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/bind/boxed?id=1",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"bind",
+								"boxed"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/boxed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/bind/boxed?id=1",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"bind",
+										"boxed"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:42:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "id: 1"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/boxed/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{domain}}/mvc/bind/boxed/1"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/boxed/{id}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{domain}}/mvc/bind/boxed/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 18:00:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "id: 1"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/array",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/bind/array?name=Foo&name=Bar",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"bind",
+								"array"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Foo"
+								},
+								{
+									"key": "name",
+									"value": "Bar"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/array",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/bind/array?name=Foo&name=Bar",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"bind",
+										"array"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Foo"
+										},
+										{
+											"key": "name",
+											"value": "Bar"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/object",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/bind/object?id=1&name=Foo&attribute.size=M",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"bind",
+								"object"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "Foo"
+								},
+								{
+									"key": "attribute.size",
+									"value": "M"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/object",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/bind/object?id=1&name=Foo&attribute.size=M",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"bind",
+										"object"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "name",
+											"value": "Foo"
+										},
+										{
+											"key": "attribute.size",
+											"value": "M"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:43:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "ObjectParam(id=1, name=Foo, attribute=AttributeParam(size=M, color=null))"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/bind/date?date=2020-01-01&localDate=2020-01-02",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"bind",
+								"date"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2020-01-01"
+								},
+								{
+									"key": "localDate",
+									"value": "2020-01-02"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/date",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/bind/date?date=2020-01-01&localDate=2020-01-02",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"bind",
+										"date"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2020-01-01"
+										},
+										{
+											"key": "localDate",
+											"value": "2020-01-02"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/object",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Foo\",\n    \"attribute\": {\n        \"size\": \"M\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/mvc/bind/object"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/object",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"name\": \"Foo\",\n    \"attribute\": {\n        \"size\": \"M\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{domain}}/mvc/bind/object"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:44:10 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "ObjectParam(id=1, name=Foo, attribute=AttributeParam(size=M, color=null))"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": 1,\n        \"name\": \"Foo\",\n        \"attribute\": {\n            \"size\": \"M\"\n        }\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/mvc/bind/list"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/list",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": 1,\n        \"name\": \"Foo\",\n        \"attribute\": {\n            \"size\": \"M\"\n        }\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{domain}}/mvc/bind/list"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:44:29 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[ObjectParam(id=1, name=Foo, attribute=AttributeParam(size=M, color=null))]"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": 1,\n        \"name\": \"Foo\"\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Bar\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/mvc/bind/set"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/set",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": 1,\n        \"name\": \"Foo\"\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Bar\"\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{domain}}/mvc/bind/set"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:44:50 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[ObjectParam(id=1, name=Foo, attribute=null)]"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/map",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"size\": \"M\",\n    \"color\": \"white\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{domain}}/mvc/bind/map"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/map",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"size\": \"M\",\n    \"color\": \"white\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{domain}}/mvc/bind/map"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:45:12 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{size=M, color=white}"
+						}
+					]
+				},
+				{
+					"name": "/mvc/bind/xml",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<item>\n  <id>1</id>\n  <name>Foo</name>\n</item>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": "{{domain}}/mvc/bind/xml"
+					},
+					"response": [
+						{
+							"name": "/mvc/bind/xml",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/xml"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<item>\n  <id>1</id>\n  <name>Foo</name>\n</item>",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": "{{domain}}/mvc/bind/xml"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 04 Jan 2020 16:45:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "XmlParam(id=1, name=Foo)"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "validation",
+			"item": [
+				{
+					"name": "/mvc/validation/valid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/validation/valid?name=Foo",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"validation",
+								"valid"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Foo"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/validation/valid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/validation/valid?name=Foo",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"validation",
+										"valid"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "Foo"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jan 2020 15:21:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{id=id不能为空！}"
+						}
+					]
+				},
+				{
+					"name": "/mvc/validation/validated",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{domain}}/mvc/validation/validated"
+					},
+					"response": [
+						{
+							"name": "/mvc/validation/validated",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{domain}}/mvc/validation/validated"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jan 2020 15:40:10 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{id=id为空!}"
+						}
+					]
+				},
+				{
+					"name": "/mvc/validation/binding-result",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/validation/binding-result?name=admin",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"validation",
+								"binding-result"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/validation/binding-result",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/validation/binding-result?name=admin",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"validation",
+										"binding-result"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "admin"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jan 2020 15:49:30 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{name=此名称不允许使用！}"
+						}
+					]
+				},
+				{
+					"name": "/mvc/validation/validator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/mvc/validation/validator?name=foo",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"mvc",
+								"validation",
+								"validator"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "foo"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/mvc/validation/validator",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{domain}}/mvc/validation/validator?name=foo",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"mvc",
+										"validation",
+										"validator"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "foo"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jan 2020 16:02:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{name=lengthCheck不通过！}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
