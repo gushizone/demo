@@ -39,7 +39,6 @@
         where ID = #{id,jdbcType=INTEGER}
     </select>
 
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from message
@@ -71,5 +70,43 @@
         where ID = #{id,jdbcType=INTEGER}
     </update>
 
+
+    <select id="selectBySearch" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        <where>
+            `description` like CONCAT('%',#{search},'%')
+            OR
+            content like '%' #{search} '%'
+        </where>
+    </select>
+
+    <select id="selectByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        where id in
+        <foreach collection="collection" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectByFilter" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        <where>
+            <if test="commandEnum != null">
+                and command = #{commandEnum.code}
+
+                <!-- TODO 为什么直接使用枚举也可以？ -->
+                <!--and command = #{commandEnum}-->
+            </if>
+            <if test="search!= null and search != ''">
+                and content like '%' #{search} '%'
+            </if>
+        </where>
+    </select>
 
 </mapper>

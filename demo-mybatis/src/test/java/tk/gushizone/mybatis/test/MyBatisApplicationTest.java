@@ -1,5 +1,6 @@
 package tk.gushizone.mybatis.test;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,6 +50,15 @@ public class MyBatisApplicationTest {
     public void testRetrieve() {
         Message message = messageMapper.selectByPrimaryKey(1);
         log.warn(message.toString());
+
+        List<Message> list1 = messageMapper.selectBySearch("日");
+        log.warn("模糊查询结果：{}", list1);
+
+        List<Message> list2 = messageMapper.selectByIds(Lists.newArrayList(1, 2, 5));
+        log.warn("ids查询结果：{}", list2);
+
+        List<Message> list3 = messageMapper.selectByFilter(CommandEnum.JOKE, "精彩");
+        log.warn("多条件查询结果：{}", list3);
     }
 
     @Test
