@@ -1,0 +1,6 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2Mb
+      max-request-size: 20Mb
+      resolve-lazily: true # 推迟文件解析，以便捕获文件大小异常

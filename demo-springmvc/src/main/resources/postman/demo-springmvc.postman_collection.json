@@ -999,6 +999,64 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "upload",
+			"item": [
+				{
+					"name": "/mvc/upload/file",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/gushi/Desktop/emoji.png"
+								}
+							]
+						},
+						"url": "{{domain}}/mvc/upload/file"
+					},
+					"response": []
+				},
+				{
+					"name": "/mvc/upload/files",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/gushi/Desktop/emoji.png"
+								}
+							]
+						},
+						"url": "{{domain}}/mvc/upload/file"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
