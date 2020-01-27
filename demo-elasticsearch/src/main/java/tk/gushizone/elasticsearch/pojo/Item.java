@@ -1,20 +1,20 @@
 package tk.gushizone.elasticsearch.pojo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
- * TODO  一般只要指定String是 text or keyword ，其他会自动识别。
+ * @see Field  一般只要指定String是 text or keyword ，其他会自动识别。
  *
  * @author gushizone@gmail.com
  * @date 2019-09-14 14:36
  */
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "item", type = "docs", shards = 1, replicas = 0)
