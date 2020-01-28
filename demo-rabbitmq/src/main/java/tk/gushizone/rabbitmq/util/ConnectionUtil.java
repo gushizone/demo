@@ -3,11 +3,15 @@ package tk.gushizone.rabbitmq.util;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+/**
+ *
+ * @author gushizone@gmail.com
+ * @date 2020-01-28 19:34
+ */
 public class ConnectionUtil {
+
     /**
      * 建立与RabbitMQ的连接
-     * @return
-     * @throws Exception
      */
     public static Connection getConnection() throws Exception {
         //定义连接工厂
@@ -21,8 +25,7 @@ public class ConnectionUtil {
         factory.setUsername("test");
         factory.setPassword("test");
         // 通过工程获取连接
-        Connection connection = factory.newConnection();
-        return connection;
+        return factory.newConnection();
     }
 
 }

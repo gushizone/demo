@@ -30,7 +30,6 @@ public class RabbitMqApplicationTest {
 
     /**
      * mq 发送
-     * @throws InterruptedException
      */
     @Test
     public void testSend() throws InterruptedException {
