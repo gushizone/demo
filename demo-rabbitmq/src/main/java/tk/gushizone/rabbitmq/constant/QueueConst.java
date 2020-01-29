@@ -21,4 +21,6 @@ public interface QueueConst {
     String TOPIC_QUEUE_1 = "topic_queue_1";
 
     String TOPIC_QUEUE_2 = "topic_queue_2";
+
+    String SPRING_QUEUE = "spring_queue";
 }

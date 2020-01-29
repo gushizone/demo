@@ -1,16 +1,22 @@
 package tk.gushizone.rabbitmq.test.spring;
 
 import com.rabbitmq.client.Connection;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import tk.gushizone.rabbitmq.constant.ExchangeConst;
 import tk.gushizone.rabbitmq.spring.RabbitMqApplication;
 import tk.gushizone.rabbitmq.util.ConnectionUtil;
 
-
+/**
+ * @author gushizone@gmail.com
+ * @date 2020-01-29 21:59
+ */
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RabbitMqApplication.class)
 public class RabbitMqApplicationTest {
@@ -24,7 +30,7 @@ public class RabbitMqApplicationTest {
         // 获取到连接
         Connection connection = ConnectionUtil.getConnection();
         if (connection != null) {
-            System.out.println("rabbitmq 连接成功!");
+            log.warn("rabbitmq 连接成功!");
         }
     }
 
@@ -33,8 +39,9 @@ public class RabbitMqApplicationTest {
      */
     @Test
     public void testSend() throws InterruptedException {
+
         String msg = "hello, Spring boot amqp";
-        amqpTemplate.convertAndSend("spring.test.exchange","a.b", msg);
+        amqpTemplate.convertAndSend(ExchangeConst.SPRING_EXCHANGE, "a.b", msg);
         // 等待10秒后再结束
         Thread.sleep(10000);
     }

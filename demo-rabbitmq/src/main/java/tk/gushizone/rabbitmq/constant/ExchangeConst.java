@@ -11,4 +11,6 @@ public interface ExchangeConst {
     String DIRECT_EXCHANGE = "direct_exchange";
 
     String TOPIC_EXCHANGE = "topic_exchange";
+
+    String SPRING_EXCHANGE = "spring_exchange";
 }
