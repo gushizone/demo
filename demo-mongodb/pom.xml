@@ -13,11 +13,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <mongodb.driver.version>3.6.4</mongodb.driver.version>
-    </properties>
-
     <dependencies>
         <!-- mongodb-driver -->
         <dependency>
