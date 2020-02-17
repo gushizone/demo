@@ -21,4 +21,6 @@ public class CommandContent {
     private Date createTime;
 
     private Date updateTime;
+
+    private Command command;
 }

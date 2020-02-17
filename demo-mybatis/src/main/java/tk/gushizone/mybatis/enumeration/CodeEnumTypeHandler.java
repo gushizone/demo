@@ -17,14 +17,11 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
 
     private Class<E> type;
 
-    private final E[] enums;
-
     public CodeEnumTypeHandler(Class<E> typeHandlerClass) {
         if (typeHandlerClass == null) {
             throw new IllegalArgumentException("Type argument cannot be null");
         }
         this.type = typeHandlerClass;
-        this.enums = type.getEnumConstants();
     }
 
     /**
@@ -64,7 +61,7 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
     }
 
     private E codeOf(Integer code){
-        for (E baseEnum : enums) {
+        for (E baseEnum : type.getEnumConstants()) {
             if (baseEnum.getCode().equals(code)) {
                 return baseEnum;
             }

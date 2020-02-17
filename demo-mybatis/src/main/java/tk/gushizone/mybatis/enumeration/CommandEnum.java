@@ -20,5 +20,5 @@ public enum  CommandEnum implements BaseCodeEnum{
     LOTTERY(4, "彩票"),;
 
     private Integer code;
-    private String name;
+    private String desc;
 }

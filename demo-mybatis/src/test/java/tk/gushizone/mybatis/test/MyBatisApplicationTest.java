@@ -11,6 +11,7 @@ import tk.gushizone.mybatis.dao.CommandMapper;
 import tk.gushizone.mybatis.dao.MessageMapper;
 import tk.gushizone.mybatis.enumeration.CommandEnum;
 import tk.gushizone.mybatis.pojo.Command;
+import tk.gushizone.mybatis.pojo.CommandContent;
 import tk.gushizone.mybatis.pojo.Message;
 
 import javax.annotation.Resource;
@@ -92,7 +93,16 @@ public class MyBatisApplicationTest {
 
         List<Command> commands = commandMapper.selectCommandWithContent();
         log.warn(commands.toString());
+    }
 
+    /**
+     * 一对一
+     */
+    @Test
+    public void testAssociation() {
+
+        CommandContent commandContent = commandMapper.selectOneContentWithCommand();
+        log.warn(commandContent.toString());
     }
 
 

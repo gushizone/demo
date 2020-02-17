@@ -1,6 +1,7 @@
 package tk.gushizone.mybatis.dao;
 
 import tk.gushizone.mybatis.pojo.Command;
+import tk.gushizone.mybatis.pojo.CommandContent;
 
 import java.util.List;
 
@@ -12,5 +13,7 @@ import java.util.List;
 public interface CommandMapper {
 
     List<Command> selectCommandWithContent();
+
+    CommandContent selectOneContentWithCommand();
 
 }
