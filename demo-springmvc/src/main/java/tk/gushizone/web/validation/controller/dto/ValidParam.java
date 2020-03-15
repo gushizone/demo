@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class ValidParam {
 
-    @NotNull(message = "id不能为空！")
+    @NotNull(message = "id不能为空")
     private Integer id;
 
     private String name;

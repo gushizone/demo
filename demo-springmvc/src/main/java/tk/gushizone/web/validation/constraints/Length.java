@@ -27,16 +27,18 @@ public @interface Length {
 
     int length() default 0;
 
-    String message() default "lengthCheck不通过！";
-
+    /**
+     * 校验提示信息
+     */
+    String message() default "lengthCheck不通过";
 
     /**
-     * FIXME : 一定要添加 groups 和 payload
-     * <p>
-     * javax.validation.ConstraintDefinitionException: HV000074
-     * Length contains Constraint annotation, but does not contain a groups parameter.
+     * 校验组
      */
     Class<?>[] groups() default {};
 
+    /**
+     * 校验错误级别
+     */
     Class<? extends Payload>[] payload() default {};
 }

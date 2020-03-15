@@ -14,10 +14,10 @@ import javax.validation.constraints.NotNull;
 @Data
 public class ValidatedParam {
 
-    @NotNull(message = "id为空!", groups = {EditValidateGroup.class, DeleteValidateGroup.class})
+    @NotNull(message = "id不能为空", groups = {EditValidateGroup.class, DeleteValidateGroup.class})
     private Integer id;
 
-    @NotEmpty(message = "name不能为空!", groups = EditValidateGroup.class)
+     @NotEmpty(groups = EditValidateGroup.class)
     private String name;
 
 }
