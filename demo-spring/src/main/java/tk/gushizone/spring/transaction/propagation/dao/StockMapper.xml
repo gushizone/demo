@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.gushizone.spring.transaction.propagation.dao.StockMapper">
+
+  <resultMap id="BaseResultMap" type="tk.gushizone.spring.transaction.propagation.entity.Stock">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, item_id, stock
+  </sql>
+
+  <insert id="insert" parameterType="tk.gushizone.spring.transaction.propagation.entity.Stock">
+    insert into stock (id, item_id, stock)
+    values (#{id,jdbcType=BIGINT}, #{itemId,jdbcType=BIGINT}, #{stock,jdbcType=INTEGER})
+  </insert>
+
+  <delete id="deleteAll">
+    delete from stock where 1=1
+  </delete>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stock
+  </select>
+
+
+</mapper>
