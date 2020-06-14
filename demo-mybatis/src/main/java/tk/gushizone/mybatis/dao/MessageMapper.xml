@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="tk.gushizone.mybatis.pojo.Message">
         <id column="ID" property="id" jdbcType="INTEGER"/>
-        <result column="COMMAND" property="command" typeHandler="tk.gushizone.mybatis.enumeration.CodeEnumTypeHandler"/>
+        <result column="COMMAND" property="command" typeHandler="tk.gushizone.mybatis.enumeration.BaseEnumTypeHandler"/>
         <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
         <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
         <result column="IS_DELETED" property="isDeleted" jdbcType="BIT"/>
@@ -106,7 +106,7 @@
         from message
         <where>
             <if test="commandEnum != null">
-                and command = #{commandEnum.code}
+                and command = #{commandEnum.value}
 
                 <!-- TODO 为什么直接使用枚举也可以？ -->
                 <!--and command = #{commandEnum}-->

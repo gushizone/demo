@@ -13,11 +13,11 @@ import java.sql.SQLException;
  * @author gushizone@gmail.com
  * @date 2019-12-26 15:39
  */
-public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler<BaseCodeEnum> {
+public class BaseEnumTypeHandler<E extends BaseEnum> extends BaseTypeHandler<BaseEnum> {
 
     private Class<E> type;
 
-    public CodeEnumTypeHandler(Class<E> typeHandlerClass) {
+    public BaseEnumTypeHandler(Class<E> typeHandlerClass) {
         if (typeHandlerClass == null) {
             throw new IllegalArgumentException("Type argument cannot be null");
         }
@@ -28,9 +28,9 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
      * 用于定义设置参数时，该如何把Java类型的参数转换为对应的数据库类型
      */
     @Override
-    public void setNonNullParameter(PreparedStatement ps, int i, BaseCodeEnum parameter, JdbcType jdbcType)
+    public void setNonNullParameter(PreparedStatement ps, int i, BaseEnum parameter, JdbcType jdbcType)
             throws SQLException {
-        ps.setInt(i, parameter.getCode());
+        ps.setInt(i, parameter.getValue());
     }
 
     /**
@@ -38,8 +38,8 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
      */
     @Override
     public E getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        Integer code = rs.getInt(columnName);
-        return rs.wasNull() ? null : codeOf(code);
+        Integer value = rs.getInt(columnName);
+        return rs.wasNull() ? null : valueOf(value);
     }
 
     /**
@@ -47,8 +47,8 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
      */
     @Override
     public E getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        Integer code = rs.getInt(columnIndex);
-        return rs.wasNull() ? null : codeOf(code);
+        Integer value = rs.getInt(columnIndex);
+        return rs.wasNull() ? null : valueOf(value);
     }
 
     /**
@@ -56,13 +56,13 @@ public class CodeEnumTypeHandler<E extends BaseCodeEnum> extends BaseTypeHandler
      */
     @Override
     public E getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        Integer code = cs.getInt(columnIndex);
-        return cs.wasNull() ? null : codeOf(code);
+        Integer value = cs.getInt(columnIndex);
+        return cs.wasNull() ? null : valueOf(value);
     }
 
-    private E codeOf(Integer code){
+    private E valueOf(Integer value){
         for (E baseEnum : type.getEnumConstants()) {
-            if (baseEnum.getCode().equals(code)) {
+            if (baseEnum.getValue() == value) {
                 return baseEnum;
             }
         }

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.EnumOrdinalTypeHandler;
 import org.apache.ibatis.type.EnumTypeHandler;
-import tk.gushizone.mybatis.enumeration.CodeEnumTypeHandler;
+import tk.gushizone.mybatis.enumeration.BaseEnumTypeHandler;
 import tk.gushizone.mybatis.enumeration.CommandEnum;
 
 import java.time.LocalDateTime;
@@ -35,7 +35,7 @@ public class Message {
      * enum <- tinyint : 需要TypeHandler
      * @see EnumTypeHandler Enum.name()
      * @see EnumOrdinalTypeHandler Enum.ordinal()
-     * @see CodeEnumTypeHandler 自定义
+     * @see BaseEnumTypeHandler 自定义
      */
     private CommandEnum command;
 
