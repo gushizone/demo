@@ -1,5 +1,6 @@
 package tk.gushizone.rabbitmq.test.spring;
 
+import com.google.common.collect.Lists;
 import com.rabbitmq.client.Connection;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.gushizone.rabbitmq.constant.ExchangeConst;
+import tk.gushizone.rabbitmq.spring.Item;
 import tk.gushizone.rabbitmq.spring.RabbitMqApplication;
 import tk.gushizone.rabbitmq.util.ConnectionUtil;
 
@@ -34,15 +36,22 @@ public class RabbitMqApplicationTest {
         }
     }
 
+    @Test
+    public void testSend() throws InterruptedException {
+
+        // String msg = "hello, Spring boot amqp";
+        Item msg = new Item(1, "abc");
+        amqpTemplate.convertAndSend(ExchangeConst.SPRING_EXCHANGE, "o.b", msg);
+    }
+
     /**
      * mq 发送
      */
     @Test
-    public void testSend() throws InterruptedException {
+    public void testSends() throws InterruptedException {
 
-        String msg = "hello, Spring boot amqp";
-        amqpTemplate.convertAndSend(ExchangeConst.SPRING_EXCHANGE, "a.b", msg);
-        // 等待10秒后再结束
-        Thread.sleep(10000);
+        // String msg = "hello, Spring boot amqp";
+        Item msg = new Item(1, "abc");
+        amqpTemplate.convertAndSend(ExchangeConst.SPRING_EXCHANGE, "l.b", Lists.newArrayList(msg));
     }
 }
