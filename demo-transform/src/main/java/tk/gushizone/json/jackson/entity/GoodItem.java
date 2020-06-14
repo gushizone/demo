@@ -1,31 +1,28 @@
 package tk.gushizone.json.jackson.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.util.function.Function;
 
 /**
- *
  * @author gushizone@gmail.com
- * @date 2020-01-02 18:03
+ * @date 2020-03-19 18:38
  */
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+@EqualsAndHashCode(callSuper = true)
+public class GoodItem extends Item {
 
-    private Integer id;
+    private String good;
 
-    private String name;
+    private Class clazz;
 
-    private BigDecimal price;
-
-    private Date createTime;
+    private Function function;
 
 }
