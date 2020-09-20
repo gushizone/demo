@@ -31,7 +31,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+//    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.MANDATORY, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)

@@ -34,7 +34,7 @@ public class ItemStockServiceImpl implements ItemStockService {
     }
 
     @Override
-//    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.MANDATORY, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
@@ -46,6 +46,13 @@ public class ItemStockServiceImpl implements ItemStockService {
         itemService.insert(Item.SAMPLE);
 //        int j = 1 / 0;
         stockService.insert(Stock.SAMPLE);
-        int k = 1 / 0;
+//        int k = 1 / 0;
+    }
+
+    @Override
+    public void testThis() {
+
+        this.insert();
+
     }
 }

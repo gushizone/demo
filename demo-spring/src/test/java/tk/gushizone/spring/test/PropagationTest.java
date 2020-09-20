@@ -15,6 +15,8 @@ import tk.gushizone.spring.transaction.propagation.service.StockService;
 import javax.annotation.Resource;
 
 /**
+ * spring事务的传播测试
+ *
  * @author gushizone@gmail.com
  * @date 2020-01-30 18:16
  */
@@ -40,7 +42,7 @@ public class PropagationTest {
 
     @After
     public void log() {
-        log.warn("======操作结束======");
+        log.warn("======操作结束, 展示结果======");
         log.warn("items : {}", itemService.selectAll());
         log.warn("stocks : {}", stockService.selectAll());
     }
@@ -48,6 +50,15 @@ public class PropagationTest {
     @Test
     public void test() {
         itemStockService.insert();
+    }
+
+    /**
+     * 因为事务基于动态代理回滚
+     * 而 this 调用的是实例方法,不是代理方法
+     */
+    @Test
+    public void testThis() {
+        itemStockService.testThis();
     }
 
 }

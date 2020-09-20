@@ -4,6 +4,10 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  task:
+    execution:
+      pool:
+        queue-capacity: 200
 
 mybatis:
   mapper-locations: classpath*:tk/gushizone/**/dao/*.xml,classpath*:mapper/*.xml
@@ -11,4 +15,6 @@ mybatis:
 logging:
   level:
     "tk.gushizone" : debug
+
+
 

@@ -9,4 +9,6 @@ public interface ItemStockService {
     void deleteAll();
 
     void insert();
+
+    void testThis();
 }

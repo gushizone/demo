@@ -39,7 +39,7 @@ public class ItemServiceImpl implements ItemService {
     public void insert(Item record) {
 //        int i = 1 / 0;
         itemMapper.insert(record);
-        int j = 1 / 0;
+//        int j = 1 / 0;
     }
 
 }
