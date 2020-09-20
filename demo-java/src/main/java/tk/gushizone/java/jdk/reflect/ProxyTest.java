@@ -21,7 +21,7 @@ public class ProxyTest {
     /**
      * JDK动态代理只能代理接口
      *
-     * 获取代理类： Proxy.newProxyInstance() ，需要：
+     * 获取代理类： Proxy.newProxyInstance(...) ，需要：
      * 1. 类的加载器，
      * 2. 希望代理的接口列表，
      * 3. InvocationHandler调用处理器的实现。

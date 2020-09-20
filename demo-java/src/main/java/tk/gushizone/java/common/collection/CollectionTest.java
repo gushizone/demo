@@ -1,9 +1,12 @@
 package tk.gushizone.java.common.collection;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -35,5 +38,18 @@ public class CollectionTest {
         System.out.println(pair.getLeft() + ":" +pair.getRight());
     }
 
+    /**
+     * 取交集
+     */
+    @Test
+    public void test(){
+        List<String> list = new ArrayList<>();
+
+        List<String> list1 = Lists.newArrayList("1", "2", "3");
+        List<String> list2 = Lists.newArrayList("2", "3", "5");
+
+        Collection c = CollectionUtils.retainAll(list1, list2);
+        System.out.println(c);
+    }
 
 }

@@ -6,7 +6,11 @@ import org.junit.Test;
 import java.text.MessageFormat;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -50,8 +54,14 @@ public class UtilTest {
         Map<Integer, String> singletonMap = Collections.singletonMap(1, "foo");
 
 
+        Collection<Integer> synchronizedCollection = Collections.synchronizedCollection(new ArrayList<>());
+        List<Integer> synchronizedList = Collections.synchronizedList(new ArrayList<>());
+        Set<Integer> synchronizedSet = Collections.synchronizedSet(new HashSet<>());
+        Map<Integer, String> objectObjectMap = Collections.synchronizedMap(new HashMap<>());
+
         SimpleEntry simpleEntry = new SimpleEntry<>("key", "value");
         AbstractMap.SimpleImmutableEntry<String, String> simpleImmutableEntry = new AbstractMap.SimpleImmutableEntry<>("key", "value");
+
     }
 
 }
