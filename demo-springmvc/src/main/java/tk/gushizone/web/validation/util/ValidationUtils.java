@@ -1,6 +1,7 @@
 package tk.gushizone.web.validation.util;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.ArrayUtils;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -25,7 +26,9 @@ public class ValidationUtils {
         List<String> messages = Lists.newArrayList();
 
         Validator validator = factory();
-        Set<ConstraintViolation<T>> validate = validator.validate(object, groups);
+        Set<ConstraintViolation<T>> validate = ArrayUtils.isEmpty(groups)
+                ? validator.validate(object)
+                : validator.validate(object, groups);
         validate.forEach( e -> messages.add(e.getMessageTemplate().equals(e.getMessage()) ? e.getMessage() : e.getPropertyPath() + e.getMessage()));
         return messages;
     }
