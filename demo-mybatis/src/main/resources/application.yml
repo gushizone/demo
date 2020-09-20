@@ -18,3 +18,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+
+customMybatis:
+  warnThreshold: 2
