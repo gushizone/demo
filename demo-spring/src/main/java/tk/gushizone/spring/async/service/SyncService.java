@@ -1,7 +1,6 @@
 package tk.gushizone.spring.async.service;
 
 import java.util.List;
-import java.util.concurrent.Future;
 
 /**
  * @author gushizone@gmail.com
@@ -9,6 +8,8 @@ import java.util.concurrent.Future;
  */
 public interface SyncService {
 
+
+    void test0();
 
     List<Integer> test();
 

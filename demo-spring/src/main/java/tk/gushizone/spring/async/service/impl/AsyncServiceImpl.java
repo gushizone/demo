@@ -2,7 +2,7 @@ package tk.gushizone.spring.async.service.impl;
 
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
-import org.apache.commons.collections4.ListUtils;
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,20 @@ import java.util.concurrent.Future;
  * @date 2020-09-19 22:02
  */
 @Service
+@Scope
 public class AsyncServiceImpl implements AsyncService {
+
+
+    @Async
+    @Override
+    @SneakyThrows
+    public void asyncMethodNoReturn() {
+        List<Integer> list = Lists.newArrayList(2);
+
+//        Thread.sleep(3_000);
+
+        int i = 1/0;
+    }
 
 
     @Async

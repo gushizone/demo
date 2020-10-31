@@ -9,7 +9,6 @@ import tk.gushizone.spring.async.service.SyncService;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -22,6 +21,12 @@ public class SyncServiceImpl implements SyncService {
 
     @Resource
     private AsyncService asyncService;
+
+    @Override
+    public void test0() {
+
+        asyncService.asyncMethodNoReturn();
+    }
 
     @Override
     @SneakyThrows

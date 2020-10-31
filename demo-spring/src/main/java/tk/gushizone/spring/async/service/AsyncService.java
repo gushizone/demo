@@ -9,6 +9,8 @@ import java.util.concurrent.Future;
  */
 public interface AsyncService {
 
+    void asyncMethodNoReturn();
+
     List<Integer> asyncMethod();
 
     Future<List<Integer>> asyncMethodPlus();
