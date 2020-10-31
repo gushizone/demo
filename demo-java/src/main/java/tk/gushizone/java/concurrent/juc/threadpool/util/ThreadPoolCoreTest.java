@@ -8,7 +8,7 @@ public class ThreadPoolCoreTest {
   @Test
   private void test1() {
 
-    // cpu 核心 或 超线程数
+    // cpu核心数 或 逻辑线程数（超线程数）
     int i = Runtime.getRuntime().availableProcessors();
     System.out.println(i);
   }

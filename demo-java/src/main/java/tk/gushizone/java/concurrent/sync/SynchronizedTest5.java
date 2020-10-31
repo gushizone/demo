@@ -3,6 +3,9 @@ package tk.gushizone.java.concurrent.sync;
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * 锁粗化
+ */
 @SuppressWarnings("Duplicates")
 public class SynchronizedTest5 {
 

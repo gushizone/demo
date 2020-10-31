@@ -12,14 +12,12 @@ public class JavaTest {
     public void test() throws InterruptedException {
 
 
-        while (true) {
-
-            Thread.sleep(1000L);
-
-            System.out.println(System.currentTimeMillis());
-        }
+        System.out.println(13&17);
 
 
     }
+
+
+
 
 }

@@ -47,7 +47,7 @@ public class StreamTest {
      * 流化
      * <p>
      * stream: 串行流
-     * parallelStream: 并行流
+     * parallelStream: 并行流，基于 ForkJoinPool
      */
     @Test
     public void stream() {

@@ -38,6 +38,7 @@ public class ReferenceTest {
     public void strongReference1() {
 
         foo();
+        System.gc();
     }
 
     private void foo() {

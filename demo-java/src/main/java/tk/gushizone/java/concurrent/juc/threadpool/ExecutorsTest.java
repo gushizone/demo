@@ -16,7 +16,7 @@ public class ExecutorsTest {
         ExecutorService executorService1 = Executors.newSingleThreadExecutor();
         ExecutorService executorService2 = Executors.newFixedThreadPool(3);
         ExecutorService executorService3 = Executors.newCachedThreadPool();
-        ExecutorService executorService4 = Executors.newSingleThreadExecutor();
+        ExecutorService executorService4 = Executors.newScheduledThreadPool(3);
         ExecutorService executorService5 = Executors.newWorkStealingPool();
 
     }
