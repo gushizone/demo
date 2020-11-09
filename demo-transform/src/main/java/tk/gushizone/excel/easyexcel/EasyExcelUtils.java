@@ -3,6 +3,7 @@ package tk.gushizone.excel.easyexcel;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,8 +19,6 @@ public class EasyExcelUtils {
 
 
     public static void write(HttpServletResponse response, ExcelModel excelModel) {
-
-//        File tmpFile = FileUtils.createTmpFile(UUID.randomUUID().toString() + ExcelTypeEnum.XLSX.getValue());
 
         ExcelWriter excelWriter = EasyExcel.write(getOutputStream(excelModel.getFileName(), response))
                 .useDefaultStyle(false)
@@ -42,9 +41,20 @@ public class EasyExcelUtils {
         excelWriter.finish();
     }
 
+    public static <E> List<E> read(MultipartFile file, Class<E> clazz) {
+
+        SimpleAnalysisEventListener<E> listener = new SimpleAnalysisEventListener<>();
+        try {
+            EasyExcel.read(file.getInputStream(), clazz, listener).sheet().doRead();
+            return listener.fetchResults();
+        } catch (IOException e) {
+            throw new RuntimeException("解析异常");
+        }
+
+    }
+
 
     private static OutputStream getOutputStream(String fileName, HttpServletResponse response) {
-
 
         try {
             response.setContentType("application/vnd.ms-excel");

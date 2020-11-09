@@ -1,9 +1,12 @@
 package tk.gushizone.excel.easyexcel;
 
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import tk.gushizone.excel.easyexcel.entity.Item;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +17,7 @@ import java.util.List;
  * @author gushizone@gmail.com
  * @date 2020-11-08 21:26
  */
+@Slf4j
 @RestController
 @RequestMapping("easyexcel")
 public class EasyExcelController {
@@ -41,6 +45,14 @@ public class EasyExcelController {
 
         EasyExcelUtils.write(response, excelModel);
 
+    }
+
+    @PostMapping("import")
+    public void export(MultipartFile file) {
+
+        List<Item> results = EasyExcelUtils.read(file, Item.class);
+
+        log.info(results.toString());
     }
 
 }
