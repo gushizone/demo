@@ -50,7 +50,7 @@ public class LowerBindController {
     }
 
     /**
-     * 绑定数组类型(不推荐)
+     * 绑定数组类型(不推荐), 同样适用于其他集合
      * get传递数组较困难，一般会传string再json解析。
      * <p>
      * GET http://localhost:8080/mvc/bind/array?name=foo&name=bar&codes=foo,bar
