@@ -18,33 +18,33 @@ public class LowerBindController {
 
     /**
      * 绑定基本类型(不推荐 )
-     *
+     * <p>
      * GET /mvc/bind/primitive?id=1
      */
     @GetMapping(value = "/primitive")
-    public String primitiveBind(int id){
+    public String primitiveBind(int id) {
 
         return "id: " + id;
     }
 
     /**
      * 绑定包装类型
-     *
+     * <p>
      * GET /mvc/bind/boxed?id=1
      */
     @GetMapping(value = "/boxed")
-    public String boxedBind(@RequestParam("id") Integer id){
+    public String boxedBind(@RequestParam("id") Integer id) {
 
         return "id: " + id;
     }
 
     /**
      * 绑定包装类型
-     *
+     * <p>
      * GET /mvc/bind/boxed/1
      */
     @GetMapping(value = "/boxed/{id}")
-    public String restBind(@PathVariable("id") Integer id){
+    public String restBind(@PathVariable("id") Integer id) {
 
         return "id: " + id;
     }
@@ -52,12 +52,13 @@ public class LowerBindController {
     /**
      * 绑定数组类型(不推荐)
      * get传递数组较困难，一般会传string再json解析。
-     *
-     * GET /mvc/bind/array?name=foo&name=bar
+     * <p>
+     * GET http://localhost:8080/mvc/bind/array?name=foo&name=bar&codes=foo,bar
      */
     @GetMapping(value = "/array")
-    public String arrayBind(@RequestParam("name") String[] names){
-        return Arrays.toString(names);
+    public String arrayBind(@RequestParam("name") String[] names,
+                            @RequestParam("codes") String[] codes) {
+        return Arrays.toString(names) + " | "
+                + Arrays.toString(codes);
     }
-
 }
