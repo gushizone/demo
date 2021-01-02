@@ -1,4 +1,4 @@
-package tk.gushizone.excel.easyexcel;
+package tk.gushizone.excel.easyexcel.controller;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import tk.gushizone.excel.easyexcel.utils.EasyExcelUtils;
+import tk.gushizone.excel.easyexcel.utils.write.model.ExcelModel;
 import tk.gushizone.excel.easyexcel.entity.Item;
 
 import javax.servlet.http.HttpServletResponse;

@@ -4,6 +4,7 @@ import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tk.gushizone.excel.easyexcel.utils.common.ExcelPropertyX;
 
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class Item {
     @ExcelProperty(index = 0, value = "序号")
     private Integer id;
 
+    @ExcelPropertyX(required = true)
     @ExcelProperty(index = 1, value = "名称")
     private String name;
 

@@ -1,5 +1,6 @@
-package tk.gushizone.excel.easyexcel;
+package tk.gushizone.excel.easyexcel.utils.write.model;
 
+import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,12 @@ public class ExcelModel {
      */
     private List<Sheet<?>> sheets;
 
+    public static ExcelModel build(String fileName, Sheet<?> sheet) {
+        return ExcelModel.builder()
+                .fileName(fileName)
+                .sheets(Lists.newArrayList(sheet))
+                .build();
+    }
 
     @Data
     @Builder
@@ -49,6 +56,11 @@ public class ExcelModel {
          * 数据
          */
         private List<T> data;
+
+        /**
+         * 只包含的列
+         */
+        private List<String> includeFiledNames;
     }
 
 }
