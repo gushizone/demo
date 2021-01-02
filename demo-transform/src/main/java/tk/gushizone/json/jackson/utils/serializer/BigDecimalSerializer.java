@@ -1,4 +1,4 @@
-package tk.gushizone.json.jackson;
+package tk.gushizone.json.jackson.utils.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
