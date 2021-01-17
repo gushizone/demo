@@ -1,7 +1,6 @@
 package tk.gushizone.excel.easyexcel.utils;
 
 
-
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.annotation.ExcelProperty;
@@ -12,7 +11,9 @@ import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import tk.gushizone.excel.easyexcel.utils.common.ExcelHeadColumn;
 import tk.gushizone.excel.easyexcel.utils.common.ExcelPropertyX;
 import tk.gushizone.excel.easyexcel.utils.exception.ExcelException;
 import tk.gushizone.excel.easyexcel.utils.read.SimpleAnalysisEventListener;
@@ -21,7 +22,6 @@ import tk.gushizone.excel.easyexcel.utils.write.converter.DateConverter;
 import tk.gushizone.excel.easyexcel.utils.write.handler.ImportTempleCellWriteHandler;
 import tk.gushizone.excel.easyexcel.utils.write.handler.ImportTempleRowWriteHandler;
 import tk.gushizone.excel.easyexcel.utils.write.handler.ImportTempleSheetWriteHandler;
-import tk.gushizone.excel.easyexcel.utils.common.ExcelHeadColumn;
 import tk.gushizone.excel.easyexcel.utils.write.model.ExcelModel;
 
 import javax.servlet.http.HttpServletResponse;
@@ -128,6 +128,15 @@ public class EasyExcelUtils {
     public static <E> List<E> read(MultipartFile file, Class<E> clazz) {
 
         try {
+            if (file == null || StringUtils.isBlank(file.getOriginalFilename())) {
+                throw new ExcelException("请选择excel文件");
+            }
+            String originalFilename = file.getOriginalFilename().toLowerCase();
+            if (!originalFilename.endsWith(ExcelTypeEnum.XLS.getValue())
+                    && !originalFilename.endsWith(ExcelTypeEnum.XLSX.getValue())) {
+                throw new ExcelException("请选择excel文件");
+            }
+
             SimpleAnalysisEventListener<E> listener = new SimpleAnalysisEventListener<>();
             EasyExcel.read(file.getInputStream(), clazz, listener)
                     .headRowNumber(HEAD_ROW_NUMBER)
@@ -212,10 +221,8 @@ public class EasyExcelUtils {
             response.setContentType("application/vnd.ms-excel");
             response.setCharacterEncoding("utf-8");
 
-            // swagger，postman 等依然存在中文乱码，chrome 正常
             fileName = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
-
-            response.setHeader("Content-disposition", "attachment;filename=" + fileName + "-" + DateUtils.format(new Date(), DateUtils.DATE_FORMAT_14) + ExcelTypeEnum.XLSX.getValue());
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + "-" + DateUtils.format(new Date(), DateUtils.DATE_FORMAT_14) + ExcelTypeEnum.XLSX.getValue());
             return response.getOutputStream();
         } catch (IOException e) {
 
