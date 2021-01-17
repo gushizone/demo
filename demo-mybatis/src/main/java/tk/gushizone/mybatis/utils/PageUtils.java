@@ -50,17 +50,19 @@ public class PageUtils {
         int pageNum = basePageReq.getPageNum() == null ? 1 : basePageReq.getPageNum();
         int pageSize = basePageReq.getPageSize() == null ? 10 : basePageReq.getPageSize();
 
-        com.github.pagehelper.Page<E> page = PageHelper.startPage(pageNum, pageSize);
+        String orderBy = StringUtils.EMPTY;
         if (StringUtils.isNotBlank(basePageReq.getSortFiled())
                 && StringUtils.isNotBlank(basePageReq.getSortType())) {
 
             basePageReq.checkSortType();
             basePageReq.checkSortFiled();
-            page.setOrderBy(basePageReq.getSortFiled() + " " + basePageReq.getSortType());
+            orderBy = basePageReq.getSortFiled() + " " + basePageReq.getSortType();
         }
 
         // 执行分页查询
-        PageInfo<E> pageInfo = page.doSelectPageInfo(select);
+        PageInfo<E> pageInfo = PageHelper.startPage(pageNum, pageSize)
+                .setOrderBy(orderBy)
+                .doSelectPageInfo(select);
 
         return Page.<E>builder()
                 .list(pageInfo.getList())
