@@ -75,7 +75,9 @@ public class ModelUtils {
     /**
      * stream toMap
      */
-    public static <T, K, V> Map<K, V> convertToMap(Collection<T> collection, Function<T, K> keyMapper, Function<T, V> valueMapper) {
+    public static <T, K, V> Map<K, V> convertToMap(Collection<T> collection,
+                                                   Function<T, K> keyMapper,
+                                                   Function<T, V> valueMapper) {
         if (CollectionUtils.isEmpty(collection)) {
             return Maps.newHashMap();
         }
@@ -94,6 +96,20 @@ public class ModelUtils {
         return collection.stream()
                 .filter(e -> e != null && keyMapper.apply(e) != null)
                 .collect(Collectors.groupingBy(keyMapper, Collectors.toList()));
+    }
+
+    /**
+     * stream group
+     */
+    public static <T, K, V> Map<K, List<V>> groupToMap(Collection<T> collection,
+                                                       Function<T, K> keyMapper,
+                                                       Function<T, V> valueMapper) {
+        if (CollectionUtils.isEmpty(collection)) {
+            return Maps.newHashMap();
+        }
+        return collection.stream()
+                .filter(e -> e != null && keyMapper.apply(e) != null)
+                .collect(Collectors.groupingBy(keyMapper, Collectors.mapping(valueMapper, Collectors.toList())));
     }
 
     public static <T> List<T> filter(Collection<T> collection, Predicate<T> predicate) {

@@ -4,9 +4,11 @@ import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,12 +36,22 @@ public class UtilTest {
     }
 
     @Test
-    public void messageFormat() {
+    public void messageFormat() throws ParseException {
 
         MessageFormat messageFormat = new MessageFormat("【{0}】{0}|{2}");
         List<String> messageValues = Lists.newArrayList("abc");
+
+        String format = messageFormat.format(messageValues.toArray());
         // 【abc】abc|{2}
-        System.out.println(messageFormat.format(messageValues.toArray()));
+        System.out.println(format);
+
+        Object[] parseObjs = messageFormat.parse(format);
+        // [abc, null, null]
+        System.out.println(Arrays.asList(parseObjs));
+
+        // 数字会出现千分符
+        String str = MessageFormat.format("价格：{0}", 10_000L);
+        System.out.println(str);
     }
 
     @Test
