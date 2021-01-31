@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import tk.gushizone.json.jackson.utils.serializer.BigDecimalSerializer;
@@ -93,6 +94,10 @@ public class JacksonUtils {
      * json字符串 转 list集合
      */
     public static <E> List<E> json2List(String jsonStr, Class<E> elementClass) {
+        if (StringUtils.isEmpty(jsonStr) || elementClass == null) {
+            return Lists.newArrayList();
+        }
+
         JavaType javaType = OBJECT_MAPPER.getTypeFactory().constructParametricType(List.class, elementClass);
         try {
             return OBJECT_MAPPER.readValue(jsonStr, javaType);
