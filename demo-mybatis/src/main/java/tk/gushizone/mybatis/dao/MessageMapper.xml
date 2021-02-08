@@ -27,7 +27,7 @@
                              IS_DELETED,
                              CREATE_TIME,
                              UPDATE_TIME)
-        values (#{command.code,jdbcType=TINYINT},
+        values (#{command.value,jdbcType=TINYINT},
                 #{description,jdbcType=VARCHAR},
                 #{content,jdbcType=VARCHAR},
                 #{isDeleted,jdbcType=BIT},
