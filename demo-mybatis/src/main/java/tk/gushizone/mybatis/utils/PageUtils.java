@@ -29,19 +29,6 @@ public class PageUtils {
 
     public static final Integer DO_BATCH_SIZE = 1000;
 
-    public static <E> Page<E> build(List<E> list) {
-
-        PageInfo<E> pageInfo = new PageInfo<>(list);
-
-        return Page.<E>builder()
-                .list(pageInfo.getList())
-                .total(pageInfo.getTotal())
-                .pageNum(pageInfo.getPageNum())
-                .pageSize(pageInfo.getPageSize())
-                .pages(pageInfo.getPages())
-                .build();
-    }
-
     /**
      * 物理分页 - 基于 pageHelper 的分页共通方法，支持排序
      */

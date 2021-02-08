@@ -9,6 +9,7 @@ import org.apache.ibatis.type.EnumTypeHandler;
 import tk.gushizone.mybatis.enumeration.BaseEnumTypeHandler;
 import tk.gushizone.mybatis.enumeration.CommandEnum;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -25,7 +26,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Message {
+public class Message implements Serializable {
 
     private Integer id;
 
