@@ -8,10 +8,7 @@ import java.util.List;
  */
 public interface SyncService {
 
-
-    void test0();
-
-    List<Integer> test();
+    void syncMethodNoReturn();
 
     List<Integer> syncMethod();
 

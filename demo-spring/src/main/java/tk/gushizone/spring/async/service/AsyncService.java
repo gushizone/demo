@@ -11,8 +11,6 @@ public interface AsyncService {
 
     void asyncMethodNoReturn();
 
-    List<Integer> asyncMethod();
-
-    Future<List<Integer>> asyncMethodPlus();
+    Future<List<Integer>> asyncMethod();
 
 }

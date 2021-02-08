@@ -2,7 +2,7 @@ package tk.gushizone.spring.async.service.impl;
 
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Scope;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.concurrent.Future;
  * @author gushizone@gmail.com
  * @date 2020-09-19 22:02
  */
+@Slf4j
 @Service
-@Scope
 public class AsyncServiceImpl implements AsyncService {
 
 
@@ -24,37 +24,24 @@ public class AsyncServiceImpl implements AsyncService {
     @Override
     @SneakyThrows
     public void asyncMethodNoReturn() {
-        List<Integer> list = Lists.newArrayList(2);
 
-//        Thread.sleep(3_000);
+        log.warn(Thread.currentThread().getName());
 
-        int i = 1/0;
-    }
+        Thread.sleep(1_000);
 
-
-    @Async
-    @Override
-    @SneakyThrows
-    public List<Integer> asyncMethod() {
-        List<Integer> list = Lists.newArrayList(2);
-
-        Thread.sleep(3_000);
-
-//        int i = 1/0;
-        return list;
+//        int i = 1 / 0;
     }
 
     @Async
     @Override
     @SneakyThrows
-    public Future<List<Integer>> asyncMethodPlus() {
-        List<Integer> list = Lists.newArrayList(2);
+    public Future<List<Integer>> asyncMethod() {
 
-//        this.asyncMethod();
+        log.warn(Thread.currentThread().getName());
 
-        Thread.sleep(3_000);
+        List<Integer> list = Lists.newArrayList(123);
 
-//        int i = 1/0;
+        Thread.sleep(1_000);
         return new AsyncResult<>(list);
     }
 }
