@@ -3,19 +3,24 @@ package tk.gushizone.redis.test;
 import com.google.common.collect.Lists;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.gushizone.redis.RedisApplication;
 import tk.gushizone.redis.util.RedisOperator;
 
+import javax.annotation.Resource;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * @author gushizone@gmail.com
@@ -28,12 +33,14 @@ public class RedisTemplateTest {
 
 
     // 不推荐使用
-    @Autowired
-    private RedisTemplate redisTemplate;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private RedisOperator redisOperator;
+    @Autowired
+    private TaskExecutor taskExecutor;
 
     @Test
     public void test() {
@@ -51,6 +58,38 @@ public class RedisTemplateTest {
 
         stringRedisTemplate.opsForValue().set("key", "value");
 
+    }
+
+    /**
+     * redis为单线程：并发自增，线程安全。
+     */
+    @Test
+    @SneakyThrows
+    public void testSingle() {
+
+        String hitKey = "demo:hit";
+        int times = 10000;
+
+        stringRedisTemplate.delete(hitKey);
+
+        CountDownLatch countDownLatch = new CountDownLatch(times);
+        for (int i = 0; i < times; i++) {
+
+            taskExecutor.execute(() -> {
+
+                try {
+                    RedisAtomicLong hit = new RedisAtomicLong(hitKey, stringRedisTemplate.getConnectionFactory());
+                    long increment = hit.getAndIncrement();
+                } finally {
+
+                    countDownLatch.countDown();
+                    // System.out.println(Thread.currentThread().getName());
+                }
+            });
+        }
+
+        countDownLatch.await();
+        System.out.println(stringRedisTemplate.opsForValue().get(hitKey));
     }
 
     /**
@@ -91,7 +130,6 @@ public class RedisTemplateTest {
 
 
     }
-
 
 
 }
