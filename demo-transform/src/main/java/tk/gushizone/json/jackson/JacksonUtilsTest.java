@@ -3,7 +3,7 @@ package tk.gushizone.json.jackson;
 import org.junit.Test;
 import tk.gushizone.json.jackson.entity.GoodItem;
 import tk.gushizone.json.jackson.entity.Item;
-import tk.gushizone.json.jackson.utils.JacksonUtils;
+import tk.gushizone.json.jackson.utils.JsonUtils;
 
 /**
  * jackson 反序列化需要无参构造
@@ -21,10 +21,10 @@ public class JacksonUtilsTest {
                 // .function(i -> i.getClass() + String.valueOf(i.hashCode()))
                 .build();
 
-        String s = JacksonUtils.obj2Json(item);
+        String s = JsonUtils.objToJson(item);
         System.out.println(s);
 
-        GoodItem goodItem = JacksonUtils.json2Obj(s, GoodItem.class);
+        GoodItem goodItem = JsonUtils.jsonToObj(s, GoodItem.class);
         System.out.println(goodItem);
     }
 }

@@ -19,13 +19,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 基于 jackson 的 json, xml 工具类
+ * json 工具类
  *
  * @author gushizone@gmail.com
  * @date 2020-01-03 20:53
  */
 @Slf4j
-public class JacksonUtils {
+public class JsonUtils {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -61,7 +61,7 @@ public class JacksonUtils {
     /**
      * 对象 转 json字符串 （适用集合）
      */
-    public static <T> String obj2Json(T obj) {
+    public static <T> String objToJson(T obj) {
         if (obj == null) {
             return null;
         }
@@ -77,11 +77,10 @@ public class JacksonUtils {
      * json字符串 转 对象
      */
     @SuppressWarnings("unchecked")
-    public static <T> T json2Obj(String jsonStr, Class<T> clazz) {
+    public static <T> T jsonToObj(String jsonStr, Class<T> clazz) {
         if (StringUtils.isEmpty(jsonStr) || clazz == null) {
             return null;
         }
-
         try {
             return clazz.equals(String.class) ? (T) jsonStr : OBJECT_MAPPER.readValue(jsonStr, clazz);
         } catch (Exception e) {
@@ -93,17 +92,16 @@ public class JacksonUtils {
     /**
      * json字符串 转 list集合
      */
-    public static <E> List<E> json2List(String jsonStr, Class<E> elementClass) {
-        if (StringUtils.isEmpty(jsonStr) || elementClass == null) {
+    public static <E> List<E> jsonToList(String jsonStr, Class<E> elementClass) {
+        if (StringUtils.isBlank(jsonStr) || elementClass == null) {
             return Lists.newArrayList();
         }
-
         JavaType javaType = OBJECT_MAPPER.getTypeFactory().constructParametricType(List.class, elementClass);
         try {
             return OBJECT_MAPPER.readValue(jsonStr, javaType);
         } catch (Exception e) {
             log.warn("Parse String to Object error", e);
-            return null;
+            return Lists.newArrayList();
         }
     }
 }
