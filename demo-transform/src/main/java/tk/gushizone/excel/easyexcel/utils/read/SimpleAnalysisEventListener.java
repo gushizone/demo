@@ -7,9 +7,11 @@ import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import tk.gushizone.excel.easyexcel.utils.EasyExcelUtils;
 import tk.gushizone.excel.easyexcel.utils.common.ExcelHeadColumn;
+import tk.gushizone.excel.easyexcel.utils.common.ExtraRow;
 import tk.gushizone.excel.easyexcel.utils.exception.ExcelException;
 
 import java.beans.PropertyDescriptor;
@@ -28,6 +30,13 @@ import java.util.stream.Collectors;
 @Getter
 public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
 
+    private boolean needSheetName = false;
+
+    /**
+     * 当前sheet
+     */
+    private String sheetName;
+
     /**
      * 表头数据
      */
@@ -36,10 +45,17 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
     /**
      * 数据结果集
      */
-    private final List<T> results;
+    private List<T> results;
 
-    public SimpleAnalysisEventListener() {
-        results = Lists.newArrayListWithExpectedSize(2000);
+    public static <T> SimpleAnalysisEventListener<T> factory() {
+        return factory(false);
+    }
+
+    public static <T> SimpleAnalysisEventListener<T> factory(boolean needSheetName) {
+        SimpleAnalysisEventListener<T> listener = new SimpleAnalysisEventListener<>();
+        listener.results = Lists.newArrayListWithExpectedSize(2000);
+        listener.needSheetName = needSheetName;
+        return listener;
     }
 
     /**
@@ -51,6 +67,7 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
             return;
         }
 
+        sheetName = context.readSheetHolder().getSheetName();
         // 读取表头
         headColumns = EasyExcelUtils.readHeadColumn(context.currentReadHolder().excelReadHeadProperty().getHeadClazz());
         // 校验模板并设置索引位
@@ -73,32 +90,36 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
         try {
             Class<?> clazz = data.getClass();
             Integer rowIndex = context.readRowHolder().getRowIndex() + 1;
+
+            if (data instanceof ExtraRow) {
+                ((ExtraRow) data).setIndex(rowIndex);
+            }
+
             for (ExcelHeadColumn headCol : headColumns) {
-                if (!headCol.getExcelPropertyX()) {
-                    continue;
-                }
 
-                PropertyDescriptor pd = new PropertyDescriptor(headCol.getFieldName(), clazz);
-                Method readMethod = pd.getReadMethod();
+                if (headCol.getExcelPropertyX()) {
+                    PropertyDescriptor pd = new PropertyDescriptor(headCol.getFieldName(), clazz);
+                    Method readMethod = pd.getReadMethod();
 
-                Object value = readMethod.invoke(data);
+                    Object value = readMethod.invoke(data);
 
-                // 必填校验
-                if (headCol.getRequired()
-                        && isEmpty(value)) {
-                    throw new ExcelException("第{0}行, {1}不能为空", rowIndex, headCol.getName());
-                }
-                // 选项校验
-                if (CollectionUtils.isNotEmpty(headCol.getOptions())
-                        && !isEmpty(value)) {
-                    String fieldValue = String.valueOf(value);
-                    if (!headCol.getMultiChoice()
-                            && !headCol.getOptions().contains(fieldValue)) {
-                        throw new ExcelException("第{0}行, {1}填写不合法，请使用{2}", rowIndex, headCol.getName(), headCol.getOptions());
-                    } else {
-                        String[] fieldValues = StringUtils.split(fieldValue, EasyExcelUtils.MULTI_CHOICE_SEPARATOR);
-                        if (Arrays.stream(fieldValues).anyMatch(e -> !headCol.getOptions().contains(e))) {
-                            throw new ExcelException("第{0}行, {1}填写不合法，请使用{2}，并用[，]分隔", rowIndex, headCol.getName(), headCol.getOptions());
+                    // 必填校验
+                    if (headCol.getRequired()
+                            && isEmpty(value)) {
+                        throw new ExcelException("{0}第{1}行, {2}不能为空", sheetPrefix(), rowIndex, headCol.getName());
+                    }
+                    // 选项校验
+                    if (CollectionUtils.isNotEmpty(headCol.getOptions())
+                            && !isEmpty(value)) {
+                        String fieldValue = String.valueOf(value);
+                        if (!headCol.getMultiChoice()
+                                && !headCol.getOptions().contains(fieldValue)) {
+                            throw new ExcelException("{0}第{1}行, {2}填写不合法，请使用{3}", sheetPrefix(), rowIndex, headCol.getName(), headCol.getOptions());
+                        } else {
+                            String[] fieldValues = StringUtils.split(fieldValue, EasyExcelUtils.MULTI_CHOICE_SEPARATOR);
+                            if (Arrays.stream(fieldValues).anyMatch(e -> !headCol.getOptions().contains(e))) {
+                                throw new ExcelException("{0}第{1}行, {2}填写不合法，请使用{3}，并用[，]分隔", sheetPrefix(), rowIndex, headCol.getName(), headCol.getOptions());
+                            }
                         }
                     }
                 }
@@ -118,7 +139,7 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
         if (context.readRowHolder().getRowIndex() < context.readSheetHolder().getHeadRowNumber() - 1) {
             throw new ExcelException("校验失败，请下载最新的模板");
         }
-        log.info("数据解析完成，共计{}条。", results.size());
+        log.info("{}数据解析完成，共计{}条。", sheetPrefix(), results.size());
     }
 
     /**
@@ -137,8 +158,8 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
             Map<Integer, ExcelHeadColumn> headColMap = headColumns.stream().collect(Collectors.toMap(ExcelHeadColumn::getIndex, e -> e));
             ExcelHeadColumn excelHeadColumn = headColMap.get(excelDataConvertException.getColumnIndex());
 
-            log.error("第{}行，{}解析异常：[{}]", excelDataConvertException.getRowIndex() + 1, excelHeadColumn.getName(), excelDataConvertException.getCellData());
-            throw new ExcelException("第{0}行，{1}解析异常：[{2}]", excelDataConvertException.getRowIndex() + 1, excelHeadColumn.getName(), excelDataConvertException.getCellData());
+            log.error("{}第{}行，{}解析异常，数据类型错误：[{}]", sheetPrefix(), excelDataConvertException.getRowIndex() + 1, excelHeadColumn.getName(), excelDataConvertException.getCellData());
+            throw new ExcelException("{0}第{1}行，{2}解析异常，数据类型错误：[{3}]", sheetPrefix(), excelDataConvertException.getRowIndex() + 1, excelHeadColumn.getName(), excelDataConvertException.getCellData());
         }
     }
 
@@ -150,5 +171,10 @@ public class SimpleAnalysisEventListener<T> extends AnalysisEventListener<T> {
             return StringUtils.isBlank((CharSequence) value);
         }
         return false;
+    }
+
+    private String sheetPrefix() {
+        return BooleanUtils.isTrue(needSheetName) && StringUtils.isNotEmpty(sheetName)
+                ? sheetName + "，" : StringUtils.EMPTY;
     }
 }

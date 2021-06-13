@@ -23,9 +23,14 @@ public class ExcelHeadColumn {
     private Integer index;
 
     /**
-     * 列名称
+     * 列名称(最后一级)
      */
     private String name;
+
+    /**
+     * 所有列名称
+     */
+    private String[] names;
 
     /**
      * 对应的字段名
