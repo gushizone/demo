@@ -31,7 +31,7 @@ public class ThreadTest {
         // 2. 实现 Runnable 接口, 实现 run()
         new Thread(() -> doSomething()).start();
 
-        // 2. 实现 Callable 接口, 实现 call()
+        // 3. 实现 Callable 接口, 实现 call()
         FutureTask futureTask = new FutureTask(() -> "实现Callable");
         new Thread(futureTask).start();
         System.out.println(futureTask.get());

@@ -57,9 +57,13 @@ public class ThreadPoolExecutorTest {
 
 
 //        监控 API
+//        已执行和未执行的任务总数
 //        executor.getTaskCount();
+//        已完成的任务数量
 //        executor.getCompletedTaskCount();
+//        当前的线程数量
 //        executor.getPoolSize();
+//        正在执行任务的线程数量
 //        executor.getActiveCount();
 
 //        线程池状态: RUNNING | SHUTDOWN | STOP | TIDYING | TERMINATED

@@ -22,14 +22,14 @@ public class JsonDeserializerInterceptor extends JsonDeserializer<Object> implem
     private static final ZoneOffset CTT;
     private static final String SEPARATE = ",";
     private Class<?> clazz;
-    private Class<?> collectionValue;
+    private Class<?> rawClass;
 
     public JsonDeserializerInterceptor() {
     }
 
-    public JsonDeserializerInterceptor(Class<?> clazz, Class<?> collectionValue) {
+    public JsonDeserializerInterceptor(Class<?> clazz, Class<?> rawClass) {
         this.clazz = clazz;
-        this.collectionValue = collectionValue;
+        this.rawClass = rawClass;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class JsonDeserializerInterceptor extends JsonDeserializer<Object> implem
                 deserializerAnnotation = beanProperty.getContextAnnotation(JsonDeserializeX.class);
             }
 
-            return  (deserializerAnnotation != null ? new JsonDeserializerInterceptor(beanProperty.getType().getRawClass(), deserializerAnnotation.collectionValue()) : deserializationContext.findNonContextualValueDeserializer(beanProperty.getType()));
+            return  (deserializerAnnotation != null ? new JsonDeserializerInterceptor(beanProperty.getType().getRawClass(), deserializerAnnotation.rawClass()) : deserializationContext.findNonContextualValueDeserializer(beanProperty.getType()));
         } else {
             return this;
         }

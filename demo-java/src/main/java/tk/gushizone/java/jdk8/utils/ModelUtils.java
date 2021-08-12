@@ -43,6 +43,7 @@ public class ModelUtils {
             return Lists.newArrayList();
         }
         return collection.stream()
+                .filter(e -> e != null && function.apply(e) != null)
                 .map(function)
                 .collect(Collectors.toList());
     }
@@ -62,6 +63,7 @@ public class ModelUtils {
 
     /**
      * stream toMap
+     * 避免 null 和 Duplicate key
      */
     public static <T, K> Map<K, T> convertToMap(Collection<T> collection, Function<T, K> keyMapper) {
         if (CollectionUtils.isEmpty(collection)) {
@@ -74,6 +76,7 @@ public class ModelUtils {
 
     /**
      * stream toMap
+     * 避免 null 和 Duplicate key
      */
     public static <T, K, V> Map<K, V> convertToMap(Collection<T> collection,
                                                    Function<T, K> keyMapper,

@@ -111,6 +111,7 @@ public class PageUtils {
                 PropertyDescriptor pd = new PropertyDescriptor(basePageReq.getSortFiled(), list.get(0).getClass());
                 Method readMethod = pd.getReadMethod();
 
+                Comparator<Object> comparator = ComparatorUtils.nullLowComparator(null);
                 list.sort((o1, o2) -> {
                     Object val1;
                     Object val2;
@@ -122,7 +123,6 @@ public class PageUtils {
                         log.error("排序失败，无法获取字段值: ", e);
                         throw new RuntimeException("排序失败，无法获取字段值", e);
                     }
-                    Comparator<Object> comparator = ComparatorUtils.nullLowComparator(null);
                     return SortTypeEnum.ASC.getCodeText().equals(basePageReq.getSortType())
                             ? comparator.compare(val1, val2)
                             : comparator.compare(val2, val1);

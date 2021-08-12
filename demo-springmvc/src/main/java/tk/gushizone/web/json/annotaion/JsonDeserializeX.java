@@ -12,5 +12,5 @@ import java.lang.annotation.RetentionPolicy;
 @JsonDeserialize(using = JsonDeserializerInterceptor.class)
 public @interface JsonDeserializeX {
 
-    Class collectionValue() default Object.class;
+    Class<?> rawClass() default Object.class;
 }

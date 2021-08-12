@@ -1,11 +1,13 @@
 package tk.gushizone.java.jdk.io;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -59,8 +61,12 @@ public class IOTest {
     }
 
     @Test
-    public void test3() {
+    public void test3() throws IOException {
 
+        FileInputStream inputStream = new FileInputStream("README.md");
+        FileOutputStream outputStream = new FileOutputStream("README.log");
+
+        IOUtils.copy(inputStream, outputStream);
     }
 
     @Test
