@@ -17,9 +17,9 @@
         <junit.version>4.13.1</junit.version>
         <lombok.version>1.18.6</lombok.version>
         <logback.version>1.2.3</logback.version>
-        <commons.lang3.version>3.8.1</commons.lang3.version>
-        <commons.collections4.version>4.3</commons.collections4.version>
-        <commons.pool2.version>2.6.2</commons.pool2.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <commons-collections4.version>4.3</commons-collections4.version>
+        <commons-pool2.version>2.6.2</commons-pool2.version>
         <guava.version>30.0-jre</guava.version>
         <ttl.version>2.12.1</ttl.version>
 
@@ -51,12 +51,12 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
-                <version>${commons.lang3.version}</version>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
-                <version>${commons.collections4.version}</version>
+                <version>${commons-collections4.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
