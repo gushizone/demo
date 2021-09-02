@@ -62,6 +62,12 @@ public class StreamTest {
         System.out.println();
         // 12345
         list.parallelStream().forEachOrdered(System.out::print);
+
+//        todo
+//        System.out.println(Thread.currentThread().getId());
+//        list.parallelStream().forEach(e -> {
+//            System.out.println(Thread.currentThread().getId());
+//        });
     }
 
 
