@@ -1,4 +1,4 @@
-package tk.gushizone.web.test;
+package tk.gushizone.web.ping;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/8/2 2:40 下午
  */
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/mvc")
+public class PingController {
 
 
 

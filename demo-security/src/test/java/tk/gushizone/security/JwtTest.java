@@ -1,15 +1,18 @@
 package tk.gushizone.security;
 
+import cn.hutool.jwt.JWTUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.util.Base64Utils;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author gushizone@gmail.com
@@ -63,6 +66,7 @@ public class JwtTest {
         // 令牌算法：HMAC / RSA
         Algorithm algorithm = Algorithm.HMAC256(SECRET);
 
+        // 只验证 JWT 本身是否非法，不需要添加 Claim；添加 Claim 是为确保 token 是当前用户的
         JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer(ISSUER) // 签发人
                 .withClaim("userId", USER_ID) // 自定义声明值，非必需
@@ -87,6 +91,28 @@ public class JwtTest {
         } catch (JWTVerificationException e) {
             log.error("签名非法", e);
         }
+    }
+
+    @Test
+    public void decoded() {
+
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJpc3N1ZXIiLCJ1c2VySWQiOjEyM30.qCUPLLu-SFR5rb07n7rUsy5IEmKDElEVqUgmD9RAeK8";
+
+        // 令牌算法：HMAC / RSA
+        Algorithm algorithm = Algorithm.HMAC256(SECRET);
+
+        DecodedJWT decode = JWT.decode(token);
+
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
+
+        DecodedJWT decodedJWT = verifier.verify(token);
+
+        boolean verify = JWTUtil.verify(token, SECRET.getBytes());
+
+        Map<String, Claim> claims = decode.getClaims();
+
+
     }
 
 }
