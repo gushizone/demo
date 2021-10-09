@@ -3,6 +3,8 @@ package tk.gushizone.spring.annotation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.annotation.Order;
 import tk.gushizone.spring.annotation.bean.IxxBean;
 import tk.gushizone.spring.annotation.bean.impl.IccBean;
@@ -12,6 +14,7 @@ import tk.gushizone.spring.annotation.bean.impl.IddBean;
  * @author gushizone@gmail.com
  * @date 2021/10/9 3:45 下午
  */
+@PropertySource(value = "classpath:application.properties")
 public class InitConfig {
 
 
@@ -37,4 +40,8 @@ public class InitConfig {
         return new IddBean();
     }
 
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 }

@@ -2,6 +2,7 @@ package tk.gushizone.spring.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +17,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @see Configuration 声明配置类，是对 {@link org.springframework.stereotype.Component} 的增强。
- * @see ComponentScan 扫描组件并注册为bean，只能作用在{@link Configuration}类上
- *
  * @author gushizone@gmail.com
  * @date 2021/10/3 12:37 上午
+ * @see Configuration 声明配置类，是对 {@link org.springframework.stereotype.Component} 的增强。
+ * @see ComponentScan 扫描组件并注册为bean，只能作用在{@link Configuration}类上
+ * @see Import 注入配置类，作用在{@link Configuration}类上，相当于 {@code <include/>}
  */
 @Configuration
 @ComponentScan
@@ -47,6 +48,19 @@ public class AnnotationConfig {
     @Autowired
     private IxxBean ixxBean;
 
+    /**
+     * @see Value ${}，取变量
+     */
+    @Value("${demo-spring.value}")
+    private String appName;
+
+    /**
+     * @see Value #{}，支持SpEL，如对象方法等
+     * https://docs.spring.io/spring-framework/docs/5.2.16.RELEASE/spring-framework-reference/core.html#expressions
+     */
+    @Value("#{iaaBean.clazz()}")
+    private String clazzName;
+
 
     /**
      * @see Bean 标识bean，默认名称为方法名，方法参数会自动按类型注入
@@ -66,6 +80,9 @@ public class AnnotationConfig {
 
         System.out.println("ixxBeans: " + ixxBeans);
         System.out.println("ixxBean: " + ixxBean);
+
+        System.out.println(appName);
+        System.out.println(clazzName);
     }
 
     /**
