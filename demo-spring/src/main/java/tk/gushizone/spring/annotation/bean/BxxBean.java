@@ -1,4 +1,4 @@
-package tk.gushizone.spring.annotation;
+package tk.gushizone.spring.annotation.bean;
 
 /**
  * @author gushizone@gmail.com
