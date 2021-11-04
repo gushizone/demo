@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
+    virtual-host: /demo
+    port: 5672
+    listener:
+      simple:
+        acknowledge-mode: manual # 消费者手动 ack
+#        concurrency: 1
+#        max-concurrency: 5
+
+
+#############################################################################################################################
+#  acknowledge-mode: none | auto （默认） | manual
+#  auto
+#  - 如果消息成功被消费（成功的意思是在消费的过程中没有抛出异常），则自动确认
+#  - 当抛出 AmqpRejectAndDontRequeueException 异常的时候，则消息会被拒绝，且 requeue = false（不重新入队列）
+#  - 当抛出 ImmediateAcknowledgeAmqpException 异常，则消费者会被确认
+#  - 其他的异常，则消息会被拒绝，且 requeue = true，此时会发生死循环，可以通过 setDefaultRequeueRejected（默认是true）去设置抛弃消息
+#  manual
+#  - 手动确认，一定要对消息做出应答，否则rabbit认为当前队列没有消费完成，将不再继续向该队列发送消息。
+#  - 只有 manual， publisher-returns 为 true 才会生效
+#############################################################################################################################

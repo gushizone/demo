@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+#  main:
+#    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
+    virtual-host: /demo
+    port: 5672
+    template:
+      mandatory: true   # 生产者 mandatory, return回调才会生效
+    publisher-confirms: true # 生产者 ack
+    publisher-returns: true  # 生产者回调

@@ -6,7 +6,9 @@
   - fanout
   - direct
   - topic
-- 整合spring
+- 整合 spring
+  - ACK
+  - TTL
 
 
 
