@@ -13,6 +13,9 @@ public interface ExchangeConst {
     String TOPIC_EXCHANGE = "topic_exchange";
 
 
-
     String SPRING_EXCHANGE = "spring_exchange";
+
+    String DELAY_EXCHANGE = "delay_exchange";
+
+    String DLX_EXCHANGE = "dlx_exchange";
 }

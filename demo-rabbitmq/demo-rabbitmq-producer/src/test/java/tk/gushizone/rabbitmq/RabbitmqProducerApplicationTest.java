@@ -89,6 +89,42 @@ public class RabbitmqProducerApplicationTest {
         // 为消息单独设置TTL
         rabbitTemplate.convertAndSend(QueueConst.TTL_QUEUE, JSONUtil.toJsonStr(item), message -> {
             message.getMessageProperties().setExpiration("10000");
+
+//            消息默认就是持久化
+//            message.getMessageProperties().setDeliveryMode(MessageProperties.DEFAULT_DELIVERY_MODE);
+            return message;
+        });
+
+        // 等待异步监听
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void testDelaySend() throws InterruptedException {
+
+
+        Item item = new Item(1, "abc");
+
+        // 为消息单独设置TTL
+        rabbitTemplate.convertAndSend(ExchangeConst.DELAY_EXCHANGE, "delay.foo", JSONUtil.toJsonStr(item), message -> {
+            message.getMessageProperties().setDelay(10000);
+            return message;
+        });
+
+        // 等待异步监听
+        Thread.sleep(1000);
+    }
+
+    @Test
+    public void testDlqSend() throws InterruptedException {
+
+
+        Item item = new Item(1, "abc");
+
+        rabbitTemplate.convertAndSend(QueueConst.SAFE_QUEUE, JSONUtil.toJsonStr(item), message -> {
+
+            // 10s 自动过期，进入死信队列
+            message.getMessageProperties().setExpiration("10000");
             return message;
         });
 

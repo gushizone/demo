@@ -110,4 +110,25 @@ public class MqListener {
         }
     }
 
+
+    /**
+     * 延时队列
+     */
+    @RabbitListener(queues = QueueConst.DELAY_QUEUE)
+    public void delayRec(Channel channel, Message message) throws IOException {
+
+        log.warn("接收到延时消息：{}", message);
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
+    /**
+     * 死信队列
+     */
+    @RabbitListener(queues = QueueConst.DLQ_QUEUE)
+    public void dlqRec(Channel channel, Message message) throws IOException {
+
+        log.warn("接收到死信消息：{}", message);
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+    }
+
 }

@@ -9,6 +9,8 @@
 - 整合 spring
   - ACK
   - TTL
+  - 延时队列（delayQueue）
+  - 死信队列（DLQ）
 
 
 

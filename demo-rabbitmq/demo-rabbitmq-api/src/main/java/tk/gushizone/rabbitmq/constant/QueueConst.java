@@ -30,4 +30,10 @@ public interface QueueConst {
     String DEMO_QUEUE = "demo_queue";
 
     String TTL_QUEUE = "ttl_queue";
+
+    String DELAY_QUEUE = "delay_queue";
+
+    String DLQ_QUEUE = "dlq_queue";
+
+    String SAFE_QUEUE = "safe_queue";
 }
