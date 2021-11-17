@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    bootstrap-servers:
+      - 127.0.0.1:9092
+    producer:
+      acks: 1
+#      retries: 0
+#      batch-size: 16384
+#      buffer-memory: 33554432
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+#####################################################################################
+# kafka 生产端最重要的配置
+# 这个配置是保证 broker 本身的可靠性投递，并不能完全保证消息的可靠性投递（因为消息的可靠性投递包含三方面：producer, broker, consumer）
+# spring.kafka.producer.acks
+#
+# 0 ： 生产者在成功写入消息之前不会等待任何来自服务器的响应。
+# 1 ： 只要集群的首领节点收到消息，生产者就会收到一个来自服务器成功响应。生产环境推荐使用。
+# -1: 表示分区leader必须等待消息被成功写入到所有的ISR副本(同步副本)中才认为producer请求成功。这种方案提供最高的消息持久性保证，但是理论上吞吐率也是最差的。
+#####################################################################################
+
+
