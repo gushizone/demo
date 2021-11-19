@@ -7,6 +7,7 @@
 | demo-elasticsearch | spring-data-elasticsearch 等。                               |
 | demo-java          | jdk, jdk8, lombok 等。                                       |
 | demo-kafka         | spring-kafka 等                                              |
+| demo-log           | log4j2, elk 等                                               |
 | demo-mongodb       | mongodb-driver,  spring-data-mongodb 等。                    |
 | demo-mybatis       | crud, 一对多 等。                                            |
 | demo-rabbitmq      | 五种消息模型 , spring-boot-starter-amqp, 延时队列, 死信队列 等。 |

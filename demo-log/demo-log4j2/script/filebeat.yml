@@ -1,0 +1,49 @@
+# filebeat -e -c $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/script/filebeat.yml
+
+# export WORKSPACE=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# filebeat -e -c $WORKSPACE/script/filebeat.yml
+
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - logs/demo-log4j2-app.log
+  backoff: "1s"                        # 检测到某个文件到了EOF之后，每次等待多久再去检测文件是否有更新，默认为1s
+  tail_files: true                     # 从尾部开始读取日志
+  # 多行合并的配置
+  multiline.pattern: '^\['             # 指定匹配的表达式（匹配以[开头的字符串）
+  multiline.negate: true               # 是否匹配到
+  multiline.match: after               # 合并到上一行的末尾
+  multiline.max_lines: 1000            # 最大的行数
+  multiline.timeout: "2s"              # 如果在规定的时间内没有新的日志事件就不等待后面的日志了
+  fields:						       # 自定义字段和值
+    log_biz: demo-log4j2               # 服务名称
+    log_topic: app-log-demo-log4j2     # 按服务划分作为 kafka topic
+    env: dev
+
+- type: log
+  paths:
+    - logs/demo-log4j2-error.log
+  include_lines: ['^\[']
+  enabled: true
+  backoff: "1s"
+  tail_files: true
+  multiline.pattern: '^\['
+  multiline.negate: true
+  multiline.match: after
+  multiline.max_lines: 1000
+  multiline.timeout: "2s"
+  fields:
+    log_biz: demo-log4j2
+    log_topic: error-log-demo-log4j2
+
+
+output.kafka:
+  hosts: ["localhost:9092"]
+  topic: '%{[fields.log_topic]}'
+  keep_alive: 10s                     # 连接的存活时间.如果为0,表示短连,发送完就关闭.默认为0秒.
+  partition.round_robin:              # 输出至 kafka 分区的策略，有random、round_robin、hash,默认是 hash
+    reachable_only: true              # 仅将日志发布到可用分区
+  required_acks: 1                    # ACK的可靠等级.0=无响应,1=等待本地消息,-1=等待所有副本提交.默认1.
+  compression: gzip                   # 开启gzip压缩，提升效率
+  max_message_bytes: 1000000          # 消息最大字节数，10M

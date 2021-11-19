@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" schema="Log4J-V2.0.xsd" monitorInterval="600">
+    <Properties>
+        <!--<Property name="LOG_HOME">logs</Property>-->
+        <Property name="LOG_HOME">demo-log/demo-log4j2/logs</Property>
+        <property name="FILE_NAME">demo-log4j2</property>
+        <property name="patternLayout">[%d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ}] [%level{length=5}] [%thread-%tid] [%logger] [%X{hostName}] [%X{ip}] [%X{appName}] [%F,%L,%C,%M] [%m] ## '%ex'%n
+        </property>
+    </Properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${patternLayout}"/>
+        </Console>
+        <RollingRandomAccessFile name="appAppender" fileName="${LOG_HOME}/${FILE_NAME}-app.log"
+                                 filePattern="${LOG_HOME}/${FILE_NAME}-%d{yyyy-MM-dd}-app-%i.log">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="errorAppender" fileName="${LOG_HOME}/${FILE_NAME}-error.log"
+                                 filePattern="${LOG_HOME}/${FILE_NAME}-%d{yyyy-MM-dd}-error-%i.log">
+            <PatternLayout pattern="${patternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+
+    <Loggers>
+        <AsyncLogger name="tk.gushizone.*" level="info" includeLocation="true">
+            <AppenderRef ref="appAppender"/>
+        </AsyncLogger>
+        <AsyncLogger name="tk.gushizone.*" level="info" includeLocation="true">
+            <AppenderRef ref="errorAppender"/>
+        </AsyncLogger>
+
+        <Root level="info">
+            <Appender-Ref ref="CONSOLE"/>
+            <Appender-Ref ref="appAppender"/>
+            <AppenderRef ref="errorAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
