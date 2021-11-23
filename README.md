@@ -4,6 +4,7 @@
 
 | 模块               | 涉及                                                         |
 | ------------------ | ------------------------------------------------------------ |
+| demo-canal         | canal, canal-kafka 等                                        |
 | demo-elasticsearch | spring-data-elasticsearch 等。                               |
 | demo-java          | jdk, jdk8, lombok 等。                                       |
 | demo-kafka         | spring-kafka 等                                              |
