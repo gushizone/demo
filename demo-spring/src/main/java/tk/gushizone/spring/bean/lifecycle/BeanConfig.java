@@ -1,5 +1,6 @@
 package tk.gushizone.spring.bean.lifecycle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
  * @author gushizone@gmail.com
  * @date 2021/2/10 4:39 下午
  */
+@Slf4j
 //@Configuration
 public class BeanConfig {
 
@@ -28,21 +30,29 @@ public class BeanConfig {
     }
 
     @Bean(initMethod = "myInit", destroyMethod = "myDestroy")
-    public MyBean MyBeanV1() {
+    public MyBean myBeanV1() {
         MyBean myBean = new MyBean();
         myBean.setName("Foo");
         myBean.setCode(111);
+        log.info("bean 创建成功: {}", myBean.hashCode());
         return myBean;
     }
 
 //    @Bean(initMethod = "myInit", destroyMethod = "myDestroy")
-    public MyBean MyBeanV2() {
+    public MyBean myBeanV2() {
         MyBean myBean = new MyBean();
         myBean.setName("Bar");
         myBean.setCode(111);
         return myBean;
     }
 
+
+    @Bean
+    public void beanCall() {
+
+        // 被 @Bean 标记的方法会被拦截，获取的是同一个 bean
+        log.info("@Bean 方法直接调用会被拦截，只初始化一次 : {}", myBeanV1().hashCode());
+    }
 
 
 }

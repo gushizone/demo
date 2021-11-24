@@ -20,7 +20,7 @@ public class BeanLifeCycleTest {
         System.out.println("容器初始化 - 结束");
 
         System.out.println("开始获取bean");
-        MyBean bean = context.getBean("MyBeanV1", MyBean.class);
+        MyBean bean = context.getBean("myBeanV1", MyBean.class);
         System.out.println(bean);
 
         System.out.println("开始关闭容器");
