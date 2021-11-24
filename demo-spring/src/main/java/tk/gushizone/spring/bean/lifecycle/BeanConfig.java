@@ -47,12 +47,4 @@ public class BeanConfig {
     }
 
 
-    @Bean
-    public void beanCall() {
-
-        // 被 @Bean 标记的方法会被拦截，获取的是同一个 bean
-        log.info("@Bean 方法直接调用会被拦截，只初始化一次 : {}", myBeanV1().hashCode());
-    }
-
-
 }
