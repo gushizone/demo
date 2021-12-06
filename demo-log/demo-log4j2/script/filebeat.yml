@@ -1,7 +1,4 @@
-# filebeat -e -c $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/script/filebeat.yml
-
-# export WORKSPACE=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-# filebeat -e -c $WORKSPACE/script/filebeat.yml
+# filebeat -e -c $PWD/script/filebeat.yml
 
 filebeat.inputs:
 - type: log
