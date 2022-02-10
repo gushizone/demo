@@ -26,7 +26,7 @@ public class GenericsTest {
         // V - value (值)
         Map<String, Object> map = new HashMap<>();
 
-        // T - Type（Java类）
+        // T - Type（Java类）U S
 
         // R - Return
 
