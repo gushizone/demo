@@ -1,9 +1,9 @@
-package tk.gushizone.spring.transaction.propagation.service.required;
+package tk.gushizone.spring.transaction.propagation.service.impl;
 
 import org.springframework.stereotype.Service;
-import tk.gushizone.spring.transaction.propagation.dao.ItemMapper;
-import tk.gushizone.spring.transaction.propagation.entity.Item;
-import tk.gushizone.spring.transaction.propagation.service.ItemService;
+import tk.gushizone.spring.transaction.propagation.dao.StockMapper;
+import tk.gushizone.spring.transaction.propagation.entity.Stock;
+import tk.gushizone.spring.transaction.propagation.service.StockService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -13,19 +13,19 @@ import java.util.List;
  * @date 2020-01-30 22:58
  */
 @Service
-public class ItemServiceImpl implements ItemService {
+public class StockServiceImpl implements StockService {
 
     @Resource
-    private ItemMapper itemMapper;
+    private StockMapper stockMapper;
 
     @Override
     public void deleteAll() {
-        itemMapper.deleteAll();
+        stockMapper.deleteAll();
     }
 
     @Override
-    public List<Item> selectAll() {
-        return itemMapper.selectAll();
+    public List<Stock> selectAll() {
+        return stockMapper.selectAll();
     }
 
     @Override
@@ -36,10 +36,10 @@ public class ItemServiceImpl implements ItemService {
 //    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.NEVER, rollbackFor = Exception.class)
 //    @Transactional(propagation = Propagation.NESTED, rollbackFor = Exception.class)
-    public void insert(Item record) {
+    public void insert(Stock record) {
 //        int i = 1 / 0;
-        itemMapper.insert(record);
-//        int j = 1 / 0;
+        stockMapper.insert(record);
+        int j = 1 / 0;
     }
 
 }

@@ -1,11 +1,23 @@
 package tk.gushizone.java;
 
+import cn.hutool.core.codec.Base64;
+import cn.hutool.json.JSONUtil;
+import com.google.code.kaptcha.Producer;
+import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.google.code.kaptcha.util.Config;
 import com.google.common.collect.Lists;
+import lombok.SneakyThrows;
 import org.junit.Test;
+import org.springframework.util.FastByteArrayOutputStream;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @author gushizone@gmail.com
@@ -48,7 +60,49 @@ public class JavaTest {
 
     public static class DemoList extends ArrayList<Integer> {}
 
+    @Test
+    public void test2() {
+        Producer kaptchaProducer = initKaptcha();
+        String text = kaptchaProducer.createText();
+        System.out.println("==========text : " + text);;
+        BufferedImage image = kaptchaProducer.createImage(text);
+        FastByteArrayOutputStream out = new FastByteArrayOutputStream();
 
+        try {
+            ImageIO.write(image, "jpg", out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String base64Image = Base64.encode(out.toByteArray());
+        System.out.println(base64Image);
+    }
 
+    private Producer initKaptcha() {
+        DefaultKaptcha dk = new DefaultKaptcha();
+        Properties properties = new Properties();
+        properties.put("kaptcha.border", "yes");
+        properties.put("kaptcha.border.color", "105,179,90");
+        properties.put("kaptcha.textproducer.font.color", "blue");
+        properties.put("kaptcha.image.width", "125");
+        properties.put("kaptcha.image.height", "45");
+        properties.put("kaptcha.textproducer.font.size", "30");
+        properties.put("kaptcha.session.key", "code");
+        properties.put("kaptcha.textproducer.char.length", "4");
+//        properties.put("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
+        Config config = new Config(properties);
+        dk.setConfig(config);
+        return dk;
+    }
+
+    @SneakyThrows
+    @Test
+    public void testss() {
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        String[] fonts = ge.getAvailableFontFamilyNames();
+        System.out.println(JSONUtil.toJsonStr(fonts));
+
+    }
 
 }

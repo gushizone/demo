@@ -48,6 +48,14 @@ public class PropagationTest {
     }
 
     @Test
+    public void testIsolation() throws InterruptedException {
+        itemStockService.testIsolation();
+
+
+        Thread.sleep(20_000L);
+    }
+
+    @Test
     public void test() {
         itemStockService.insert();
     }

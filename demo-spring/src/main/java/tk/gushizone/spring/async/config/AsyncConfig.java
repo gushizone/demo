@@ -1,4 +1,4 @@
-package tk.gushizone.spring.config;
+package tk.gushizone.spring.async.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;

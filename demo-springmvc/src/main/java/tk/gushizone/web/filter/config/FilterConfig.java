@@ -13,6 +13,8 @@ import org.springframework.core.Ordered;
  * 2. filter 异常会影响 其他filter, 如果希望异常忽略，需要自行 catch
  * 3. chain.doFilter(request, response); 是放行，进入 filter 或 controller
  *
+ * 不推荐使用: @WebFilter + @ServletComponentScan + @Order
+ *
  * @author gushizone@gmail.com
  * @date 2022/2/10 10:29 上午
  */
@@ -45,10 +47,19 @@ public class FilterConfig {
     public FilterRegistrationBean<HeaderFilter> headerFilterReg() {
 
         FilterRegistrationBean<HeaderFilter> filterReg = new FilterRegistrationBean<>();
-        filterReg.setName("headerFilter");
         filterReg.setFilter(new HeaderFilter());
         filterReg.setUrlPatterns(Lists.newArrayList("/filter/*"));
         filterReg.setOrder(0);
+        return filterReg;
+    }
+
+    @Bean
+    public FilterRegistrationBean<ResponseFilter> responseFilterReg() {
+
+        FilterRegistrationBean<ResponseFilter> filterReg = new FilterRegistrationBean<>();
+        filterReg.setFilter(new ResponseFilter());
+        filterReg.setUrlPatterns(Lists.newArrayList("/filter/*"));
+        filterReg.setOrder(1);
         return filterReg;
     }
 }

@@ -11,4 +11,6 @@ public interface ItemStockService {
     void insert();
 
     void testThis();
+
+    void testIsolation();
 }

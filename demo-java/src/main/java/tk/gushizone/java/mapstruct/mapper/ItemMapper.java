@@ -32,6 +32,10 @@ public interface ItemMapper {
 
     List<ItemDto> toDto(List<Item> items);
 
+    /**
+     *
+     * @see InheritInverseConfiguration 继承反方向的所有配置
+     */
     @InheritInverseConfiguration
     @Mapping(source = "status.value", target = "status")
     Item toPojo(ItemDto dto);

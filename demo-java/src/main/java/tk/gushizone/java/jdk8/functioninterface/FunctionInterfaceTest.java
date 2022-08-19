@@ -7,6 +7,8 @@ import tk.gushizone.java.jdk8.entity.User;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author gushizone@gmail.com
@@ -60,4 +62,12 @@ public class FunctionInterfaceTest {
         log.info(results.toString());
     }
 
+
+    @Test
+    public void test() {
+
+        Supplier<?> s1 = () -> "s1";
+        Supplier<?> s2 = () -> "s1";
+
+    }
 }

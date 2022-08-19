@@ -1,5 +1,6 @@
-package tk.gushizone.spring.transaction.propagation.service.required;
+package tk.gushizone.spring.transaction.propagation.service.impl;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -11,6 +12,7 @@ import tk.gushizone.spring.transaction.propagation.service.ItemStockService;
 import tk.gushizone.spring.transaction.propagation.service.StockService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author gushizone@gmail.com
@@ -55,4 +57,16 @@ public class ItemStockServiceImpl implements ItemStockService {
         this.insert();
 
     }
+
+    /**
+     * 测试隔离级别
+     */
+    @Override
+    public void testIsolation() {
+
+        new Thread(() -> itemService.sessionA()).start();
+        new Thread(() -> itemService.sessionB()).start();
+
+    }
+
 }

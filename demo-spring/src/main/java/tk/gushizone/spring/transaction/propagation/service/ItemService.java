@@ -1,6 +1,8 @@
 package tk.gushizone.spring.transaction.propagation.service;
 
 
+import lombok.SneakyThrows;
+import org.springframework.transaction.annotation.Transactional;
 import tk.gushizone.spring.transaction.propagation.entity.Item;
 
 import java.util.List;
@@ -17,4 +19,7 @@ public interface ItemService {
 
     void insert(Item record);
 
+    void sessionA();
+
+    void sessionB();
 }

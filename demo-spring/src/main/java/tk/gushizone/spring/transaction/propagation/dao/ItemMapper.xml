@@ -21,7 +21,9 @@
     delete from item where 1=1
   </delete>
 
+  <!-- flushCache: true 关闭一级缓存 -->
   <select id="selectAll" resultMap="BaseResultMap">
+  <!--<select id="selectAll" resultMap="BaseResultMap" flushCache="true">-->
     select
     <include refid="Base_Column_List" />
     from item

@@ -1,0 +1,5 @@
+rocketmq:
+#  name-server: 192.168.80.121:9876;192.168.80.122:9876
+  name-server: 1743879672274345.mqrest.cn-beijing.aliyuncs.com
+  producer:
+    group: GID_MSP_HTTP

@@ -16,6 +16,10 @@ public class ScheduleConfig {
 
     int count = 0;
 
+    /**
+     * fixedDelay : 固定延迟，本次任务结束和下次任务开始的间隔时间，任务不会重叠。
+     * fixedRate : 固定频率，固定时间开始下次任务，上次任务可能没结束，任务可能重叠。
+     */
     @Scheduled(cron = "0 0/1 * * * *")
     public void ding() {
 
