@@ -80,11 +80,11 @@ public class MessageServiceTest {
     public void batchSaveV2() {
 
         List<Message> results = getMessages();
+        List<List<Message>> partition = Lists.partition(results, 1000);
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start(String.valueOf(results.size()));
 
-        List<List<Message>> partition = Lists.partition(results, 1000);
         for (List<Message> list : partition) {
             messageMapper.insertBatchSomeColumn(list);
         }
