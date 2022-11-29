@@ -10,14 +10,16 @@ import java.util.concurrent.Semaphore;
  */
 public class SemaphoreTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        Semaphore semaphore = new Semaphore(1);
+        Semaphore semaphore = new Semaphore(10);
 
+        // 获取一个信号量
+        semaphore.acquire();
+
+        // 释放一个信号量
+        semaphore.release();
     }
-
-
-
 
 
 }

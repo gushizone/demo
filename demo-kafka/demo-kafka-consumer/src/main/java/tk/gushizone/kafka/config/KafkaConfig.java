@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import tk.gushizone.kafka.constant.TopicConst;
 
 /**
+ * todo 会自动创建 topic
+ *
  * @author gushizone@gmail.com
  * @date 2021/11/17 3:57 下午
  */
-@Configuration
+//@Configuration
 public class KafkaConfig {
 
 
