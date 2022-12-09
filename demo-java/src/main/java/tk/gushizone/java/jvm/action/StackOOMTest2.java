@@ -1,11 +1,13 @@
 package tk.gushizone.java.jvm.action;
 
 /**
- * 局部变量存放在栈帧的局部变量表中
+ * 模拟: 栈内存溢出
  *
- * <p> stack length (栈深) </p>
- * 默认配置：565
- * Xss160k：41
+ * 局部变量存放在栈帧的局部变量表中(会减小栈深)
+ *
+ * stack length (栈深)
+ * 默认配置 ：3791
+ * -Xss160k ：41
  */
 public class StackOOMTest2 {
 

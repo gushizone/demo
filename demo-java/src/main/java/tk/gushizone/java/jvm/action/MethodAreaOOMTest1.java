@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 模拟: 方法区内存溢出
+ *
  * JDK 6: -XX:PermSize=6m -XX:MaxPermSize=6m
  * 报永久代溢出(java.lang.OutOfMemoryError: PermGen space)
  * ==========

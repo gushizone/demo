@@ -6,6 +6,8 @@ import sun.misc.Unsafe;
 import java.lang.reflect.Field;
 
 /**
+ * 模拟: 直接内存溢出
+ *
  * 1. Unsafe导致直接内存溢出报错没有小尾巴
  * 2. -XX:MaxDirectMemorySize=100m 对Unsafe不起作用
  */

@@ -2,11 +2,13 @@ package tk.gushizone.java.jvm.action;
 
 
 /**
+ * 模拟: 栈内存溢出
+ *
  * 栈越小,可容纳栈帧越少
  *
- * <p> stack length (栈深) </p>
- * 默认配置：17343
- * Xss144k：773
+ * stack length (栈深)
+ * 默认配置 ：18442
+ * -Xss160k ：773
  */
 public class StackOOMTest1 {
 

@@ -13,6 +13,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 模拟: 项目运行越来越慢
+ *
  * -Xmx200m -XX:+UseConcMarkSweepGC
  *
  * 线程争抢过于激烈

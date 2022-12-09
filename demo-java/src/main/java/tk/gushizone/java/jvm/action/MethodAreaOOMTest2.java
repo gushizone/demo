@@ -6,6 +6,11 @@ import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
+/**
+ * 模拟: 方法区内存溢出
+ *
+ * java.lang.OutOfMemoryError: Metaspace
+ */
 public class MethodAreaOOMTest2 {
 
     /**

@@ -3,6 +3,8 @@ package tk.gushizone.java.jvm.action;
 import java.nio.ByteBuffer;
 
 /**
+ * 模拟: 直接内存溢出
+ *
  * 1. ByteBuffer直接内存溢出报错是java.lang.OutOfMemoryError: Direct buffer memory
  * 2. -XX:MaxDirectMemorySize=100m 对ByteBuffer有效
  */

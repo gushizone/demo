@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 模拟: TLAB 对性能的影响
+ *
  * 多线程下,差距会更明显.
- * -XX:+UseTLAB: 484ms
+ * -XX:+UseTLAB: 484ms (默认是打开的)
  * -XX:-UseTLAB: 1239ms
  */
 public class TLABTest {
