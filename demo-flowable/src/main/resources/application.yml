@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo-flowable?useUnicode=true&characterEncoding=UTF-8&useSSL=false&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+
