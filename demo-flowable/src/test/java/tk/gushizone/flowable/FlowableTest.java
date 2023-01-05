@@ -21,10 +21,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 流程的生命周期
+ */
 @Slf4j
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class FlowableTest1 {
+public class FlowableTest {
 
     @Autowired
     private RepositoryService repositoryService;
@@ -93,7 +96,7 @@ public class FlowableTest1 {
     }
 
     /**
-     * 启动流程 和 流程状态(暂停与激活)
+     * 启动流程 和 流程状态暂停(挂起与激活)
      *
      * - ACT_RU_VARIABLE: 流程变量
      */
