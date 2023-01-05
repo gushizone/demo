@@ -100,6 +100,8 @@ public class CryptoTest {
         // 公钥加密，私钥解密
         String encryptHex = rsa.encryptHex(DATA, KeyType.PublicKey);
         String decryptStr = rsa.decryptStr(encryptHex, KeyType.PrivateKey);
+        // 同一秘钥无法同时进行加解密操作
+//        String decryptStr = rsa.decryptStr(encryptHex, KeyType.PublicKey);
 
         System.out.println(encryptHex);
         System.out.println(decryptStr);
@@ -121,5 +123,8 @@ public class CryptoTest {
         System.out.println(digestHex);
     }
 
+    public static void main(String[] args) {
+        System.out.println(Base64.encode("messaging-client:secret"));
+    }
 
 }
