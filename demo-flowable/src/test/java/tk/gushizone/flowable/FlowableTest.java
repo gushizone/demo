@@ -8,6 +8,7 @@ import org.flowable.engine.HistoryService;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
+import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
@@ -38,6 +39,23 @@ public class FlowableTest {
 
     @Autowired
     private HistoryService historyService;
+
+    /**
+     * 手动部署
+     */
+//    @Test
+//    @Order(0)
+    public void deploy() {
+
+        Deployment deployment = repositoryService.createDeployment()
+                .addClasspathResource("processes/one-task-process.bpmn20.xml")
+                .name("onTaskProcessV0")
+                .deploy();
+
+        System.out.println("deployment.getId() = " + deployment.getId());
+        System.out.println("deployment.getName() = " + deployment.getName());
+    }
+
 
     /**
      * 默认 processes 目录下的流程文件会自动部署

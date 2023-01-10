@@ -107,6 +107,9 @@ public class FlowableTestV3 {
             // 流程变量传递
             // 在局部变量和全局变量都存在的时候, 取出的是局部变量
             Map<String, Object> processVariables = task.getProcessVariables();
+
+//            Map<String, Object> taskLocalVariables = task.getTaskLocalVariables();
+
             if (!processVariables.containsKey("step0")) {
                 Integer num = 3;
                 System.out.println("设置请假天数: " + num);
