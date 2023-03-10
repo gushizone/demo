@@ -58,9 +58,9 @@ public class ReferenceTest {
 
         SoftReference<byte[]> softReference = new SoftReference<>(new byte[10 * 1024 * 1024]);
         System.out.println(softReference.get());
-        System.gc();
+        System.gc(); // 不一定会回收
         System.out.println(softReference.get());
-        byte[] bytes = new byte[10 * 1024 * 1024];
+        byte[] bytes = new byte[10 * 1024 * 1024]; // 触发回收
         System.out.println(softReference.get());
     }
 

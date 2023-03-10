@@ -1,14 +1,18 @@
 package tk.gushizone.spring.async.config;
 
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
 /**
+ * todo 可以继承 {@link AsyncConfigurerSupport}
+ *
  * @author gushizone@gmail.com
  * @date 2021/2/9 3:16 上午
  */
@@ -28,7 +32,8 @@ public class AsyncConfig implements AsyncConfigurer {
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(25);
         executor.initialize();
-        return executor;
+//        return executor;
+        return TtlExecutors.getTtlExecutor(executor);
     }
 
     /**
